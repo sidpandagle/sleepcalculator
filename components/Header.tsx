@@ -7,7 +7,7 @@ export default function Header() {
       <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg text-white dark:text-white">
           <span className="text-2xl">🌙</span>
-          <span className="text-white dark:text-white text-slate-900">The Sleep Calculator</span>
+          <span className="text-white dark:text-white text-slate-900">Sleep Schedule</span>
         </Link>
         <nav className="flex items-center gap-6">
           <Link href="/" className="text-sm text-slate-300 hover:text-white dark:text-slate-300 dark:hover:text-white transition-colors">

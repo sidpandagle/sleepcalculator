@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import { toMinutes, fromMinutes, display12h } from "@/lib/time-utils";
 
 interface TimePickerProps {
@@ -8,9 +9,18 @@ interface TimePickerProps {
 }
 
 export default function TimePicker({ value, onChange, presets }: TimePickerProps) {
+  const chipRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
   function nudge(delta: number) {
     onChange(fromMinutes(toMinutes(value) + delta));
   }
+
+  useEffect(() => {
+    const el = chipRefs.current.get(value);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }, [value]);
 
   return (
     <div className="space-y-3">
@@ -36,15 +46,20 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
           + 15 min
         </button>
       </div>
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="sm:overflow-hidden">
+      <div className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto sm:[&::-webkit-scrollbar]:hidden sm:[scrollbar-width:none] gap-2 px-1 py-1">
         {presets.map((preset) => {
           const active = preset === value;
           return (
             <button
               key={preset}
+              ref={(el) => {
+                if (el) chipRefs.current.set(preset, el);
+                else chipRefs.current.delete(preset);
+              }}
               onClick={() => onChange(preset)}
               aria-pressed={active}
-              className={`shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+              className={`sm:shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 active
                   ? "bg-indigo-600 text-white"
                   : "bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10"
@@ -54,6 +69,7 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
             </button>
           );
         })}
+      </div>
       </div>
     </div>
   );

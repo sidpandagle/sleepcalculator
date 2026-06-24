@@ -1,5 +1,5 @@
 export const CYCLE_MINUTES = 90;
-export const FALL_ASLEEP_BUFFER = 14;
+export const FALL_ASLEEP_BUFFER = 15;
 
 export interface WakeUpResult {
   time: string;

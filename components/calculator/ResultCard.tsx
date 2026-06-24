@@ -1,3 +1,10 @@
+function formatAmPm(time: string) {
+  const [h, m] = time.split(":").map(Number);
+  const period = h < 12 ? "AM" : "PM";
+  const hour = h % 12 || 12;
+  return `${hour}:${String(m).padStart(2, "0")} ${period}`;
+}
+
 interface ResultCardProps {
   time: string;
   cycles: number;
@@ -19,7 +26,7 @@ export default function ResultCard({ time, cycles, hours, recommended }: ResultC
           Recommended
         </span>
       )}
-      <div className="text-3xl font-bold text-white tabular-nums">{time}</div>
+      <div className="text-3xl font-bold text-white tabular-nums">{formatAmPm(time)}</div>
       <div className="text-sm text-slate-400 mt-1">
         {cycles} sleep {cycles === 1 ? "cycle" : "cycles"} · {hours}h
       </div>

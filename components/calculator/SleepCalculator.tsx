@@ -2,22 +2,19 @@
 import { useState } from "react";
 import WakeUpTab from "./WakeUpTab";
 import BedtimeTab from "./BedtimeTab";
-import DurationTab from "./DurationTab";
 
 const TABS = [
-  { id: "wakeup", label: "Wake Up Time" },
-  { id: "bedtime", label: "Bedtime" },
-  { id: "duration", label: "Sleep Duration" },
+  { id: "bedtime", label: "Wake up at" },
+  { id: "wakeup", label: "Go to bed at" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
 
 export default function SleepCalculator() {
-  const [active, setActive] = useState<TabId>("wakeup");
+  const [active, setActive] = useState<TabId>("bedtime");
 
   return (
     <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8">
-      <h2 className="text-xl font-bold text-white mb-6">Sleep Calculator</h2>
       <div className="flex gap-1 mb-8 bg-white/5 rounded-xl p-1">
         {TABS.map((tab) => (
           <button
@@ -35,7 +32,6 @@ export default function SleepCalculator() {
       </div>
       {active === "wakeup" && <WakeUpTab />}
       {active === "bedtime" && <BedtimeTab />}
-      {active === "duration" && <DurationTab />}
     </section>
   );
 }

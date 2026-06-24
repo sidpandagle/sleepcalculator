@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Sleep Calculator — Find Your Perfect Bedtime & Wake Up Time",
     description:
       "Free sleep calculator based on 90-minute sleep cycles. Find the best time to wake up or go to sleep to feel refreshed.",
-    url: "https://thesleepcalculator.co",
+    url: "https://sleepschedule.in",
   },
 };
 
@@ -33,7 +33,7 @@ export default function HomePage() {
     },
     {
       question: "How long does it take to fall asleep?",
-      answer: "The average person takes about 14 minutes to fall asleep. This calculator accounts for this buffer when calculating your ideal wake up or bedtime.",
+      answer: "The average person takes about 15 minutes to fall asleep. This calculator accounts for this buffer when calculating your ideal wake up or bedtime.",
     },
   ]);
 
@@ -66,8 +66,8 @@ export default function HomePage() {
             },
             {
               icon: "⏰",
-              title: "14-Min Fall-Asleep Buffer",
-              body: "The average person takes about 14 minutes to fall asleep. This calculator accounts for that so your times are accurate.",
+              title: "15-Min Fall-Asleep Buffer",
+              body: "The average person takes about 15 minutes to fall asleep. This calculator accounts for that so your times are accurate.",
             },
             {
               icon: "🧬",
@@ -102,15 +102,15 @@ export default function HomePage() {
               },
               {
                 q: "How long does it take to fall asleep?",
-                a: "The average person takes about 14 minutes to fall asleep. This calculator accounts for this buffer when calculating your ideal wake-up or bedtime.",
+                a: "The average person takes about 15 minutes to fall asleep. This calculator accounts for this buffer when calculating your ideal wake-up or bedtime.",
               },
             ].map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-white/10 bg-white/5 p-5 cursor-pointer">
-                <summary className="font-medium text-white list-none flex justify-between items-center">
+              <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
+                <summary className="font-medium text-white list-none flex justify-between items-center p-5">
                   {q}
                   <span className="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
                 </summary>
-                <p className="mt-3 text-sm text-slate-400 leading-relaxed">{a}</p>
+                <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
               </details>
             ))}
           </div>

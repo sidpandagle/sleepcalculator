@@ -3,6 +3,6 @@ import type { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/", disallow: "/admin" },
-    sitemap: "https://thesleepcalculator.co/sitemap.xml",
+    sitemap: "https://sleepschedule.in/sitemap.xml",
   };
 }

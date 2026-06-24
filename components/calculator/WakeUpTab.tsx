@@ -6,7 +6,7 @@ import TimePicker from "./TimePicker";
 
 const BEDTIME_PRESETS = [
   "20:00","20:30","21:00","21:30","22:00","22:30",
-  "23:00","23:30","00:00","00:30","01:00","01:30",
+  "23:00","23:30","00:00","00:30",
 ];
 
 export default function WakeUpTab() {
@@ -26,7 +26,7 @@ export default function WakeUpTab() {
           If you fall asleep at this time, wake up at one of these times to feel refreshed:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {results.map((r) => (
+          {[...results].reverse().map((r) => (
             <ResultCard key={r.cycles} {...r} />
           ))}
         </div>

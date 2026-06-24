@@ -10,12 +10,12 @@ describe("calculateWakeUpTimes", () => {
   it("returns 6 wake times starting from 1 cycle after bedtime + buffer", () => {
     const results = calculateWakeUpTimes("22:00");
     expect(results).toHaveLength(6);
-    // 22:00 + 14min buffer + 1 cycle (90min) = 23:44
-    expect(results[0].time).toBe("23:44");
-    // 22:00 + 14min + 2 cycles (180min) = 01:14
-    expect(results[1].time).toBe("01:14");
-    // 22:00 + 14min + 6 cycles (540min) = 07:14
-    expect(results[5].time).toBe("07:14");
+    // 22:00 + 15min buffer + 1 cycle (90min) = 23:45
+    expect(results[0].time).toBe("23:45");
+    // 22:00 + 15min + 2 cycles (180min) = 01:15
+    expect(results[1].time).toBe("01:15");
+    // 22:00 + 15min + 6 cycles (540min) = 07:15
+    expect(results[5].time).toBe("07:15");
   });
 
   it("cycles count starts at 1 for first result", () => {
@@ -36,10 +36,10 @@ describe("calculateBedtimes", () => {
   it("returns 6 bedtimes working backwards from wake time minus buffer", () => {
     const results = calculateBedtimes("07:00");
     expect(results).toHaveLength(6);
-    // 07:00 - 14min buffer - 1 cycle (90min) = 05:16 (fewest cycles, latest bedtime)
-    expect(results[0].time).toBe("05:16");
-    // 07:00 - 14min buffer - 6 cycles (540min) = 21:46 (most cycles, earliest bedtime)
-    expect(results[5].time).toBe("21:46");
+    // 07:00 - 15min buffer - 1 cycle (90min) = 05:15 (fewest cycles, latest bedtime)
+    expect(results[0].time).toBe("05:15");
+    // 07:00 - 15min buffer - 6 cycles (540min) = 21:45 (most cycles, earliest bedtime)
+    expect(results[5].time).toBe("21:45");
   });
 
   it("marks 5 and 6 cycle results as recommended", () => {

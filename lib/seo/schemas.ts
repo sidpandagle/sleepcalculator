@@ -1,7 +1,7 @@
 import type { Post } from "@/lib/supabase/types";
 
-const SITE_URL = "https://thesleepcalculator.co";
-const SITE_NAME = "The Sleep Calculator";
+const SITE_URL = "https://sleepschedule.in";
+const SITE_NAME = "Sleep Schedule";
 
 export function buildWebSiteSchema() {
   return {

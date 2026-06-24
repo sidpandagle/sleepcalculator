@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: typedPost.meta_description || typedPost.excerpt,
       type: "article",
       publishedTime: typedPost.created_at,
-      url: `https://thesleepcalculator.co/blog/${typedPost.slug}`,
+      url: `https://sleepschedule.in/blog/${typedPost.slug}`,
     },
   };
 }
@@ -67,9 +67,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   const articleSchema = buildArticleSchema(typedPost);
   const breadcrumbs = [
-    { name: "Home", url: "https://thesleepcalculator.co" },
-    { name: "Blog", url: "https://thesleepcalculator.co/blog" },
-    { name: typedPost.title, url: `https://thesleepcalculator.co/blog/${typedPost.slug}` },
+    { name: "Home", url: "https://sleepschedule.in" },
+    { name: "Blog", url: "https://sleepschedule.in/blog" },
+    { name: typedPost.title, url: `https://sleepschedule.in/blog/${typedPost.slug}` },
   ];
 
   return (

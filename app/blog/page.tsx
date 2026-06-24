@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Sleep Blog — Tips, Science & Guides",
     description:
       "Evidence-based articles on sleep cycles, bedtime routines, and improving sleep quality.",
-    url: "https://thesleepcalculator.co/blog",
+    url: "https://sleepschedule.in/blog",
   },
 };
 

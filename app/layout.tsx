@@ -11,17 +11,17 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://thesleepcalculator.co"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sleepschedule.in"),
   title: {
     default: "Sleep Calculator — Find Your Perfect Bedtime & Wake Up Time",
-    template: "%s | The Sleep Calculator",
+    template: "%s | Sleep Schedule",
   },
   description: "Free sleep calculator based on 90-minute sleep cycles. Find the best time to wake up or go to sleep to feel refreshed and avoid grogginess.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://thesleepcalculator.co",
-    siteName: "The Sleep Calculator",
+    url: "https://sleepschedule.in",
+    siteName: "Sleep Schedule",
   },
   twitter: {
     card: "summary_large_image",

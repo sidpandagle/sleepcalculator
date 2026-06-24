@@ -5,13 +5,13 @@ import type { Post } from "@/lib/supabase/types";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticUrls: MetadataRoute.Sitemap = [
     {
-      url: "https://thesleepcalculator.co",
+      url: "https://sleepschedule.in",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: "https://thesleepcalculator.co/blog",
+      url: "https://sleepschedule.in/blog",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .eq("published", true);
 
   const blogUrls: MetadataRoute.Sitemap = ((posts ?? []) as Pick<Post, "slug" | "updated_at">[]).map((post) => ({
-    url: `https://thesleepcalculator.co/blog/${post.slug}`,
+    url: `https://sleepschedule.in/blog/${post.slug}`,
     lastModified: new Date(post.updated_at),
     changeFrequency: "monthly",
     priority: 0.7,

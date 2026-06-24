@@ -26,7 +26,7 @@ export default function BedtimeTab() {
           To wake up feeling refreshed, go to sleep at one of these times:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {results.map((r) => (
+          {[...results].reverse().map((r) => (
             <ResultCard key={r.cycles} {...r} />
           ))}
         </div>
