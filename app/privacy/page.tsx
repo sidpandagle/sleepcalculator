@@ -77,7 +77,7 @@ export default function PrivacyPage() {
 
         <section>
           <h2 className="text-xl font-bold text-white mb-3">8. Changes to This Policy</h2>
-          <p>We may update this policy occasionally. The "last updated" date at the top will reflect any changes.</p>
+          <p>We may update this policy occasionally. The &ldquo;last updated&rdquo; date at the top will reflect any changes.</p>
         </section>
 
         <section>
