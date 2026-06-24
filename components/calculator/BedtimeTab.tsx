@@ -15,12 +15,12 @@ export default function BedtimeTab() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <label className="block text-sm font-medium text-slate-300 mb-3">
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="block text-sm font-medium text-slate-300 mb-3">
           I need to wake up at:
-        </label>
+        </legend>
         <TimePicker value={wakeTime} onChange={setWakeTime} presets={WAKE_PRESETS} />
-      </div>
+      </fieldset>
       <div>
         <p className="text-sm text-slate-400 mb-4">
           To wake up feeling refreshed, go to sleep at one of these times:

@@ -15,15 +15,15 @@ export default function WakeUpTab() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <label className="block text-sm font-medium text-slate-300 mb-3">
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="block text-sm font-medium text-slate-300 mb-3">
           I plan to go to bed at:
-        </label>
+        </legend>
         <TimePicker value={bedtime} onChange={setBedtime} presets={BEDTIME_PRESETS} />
-      </div>
+      </fieldset>
       <div>
         <p className="text-sm text-slate-400 mb-4">
-          If you fall asleep now, wake up at one of these times to feel refreshed:
+          If you fall asleep at this time, wake up at one of these times to feel refreshed:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {results.map((r) => (
