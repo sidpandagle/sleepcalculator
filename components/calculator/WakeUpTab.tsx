@@ -2,6 +2,12 @@
 import { useState } from "react";
 import { calculateWakeUpTimes } from "@/lib/sleep-engine";
 import ResultCard from "./ResultCard";
+import TimePicker from "./TimePicker";
+
+const BEDTIME_PRESETS = [
+  "20:00","20:30","21:00","21:30","22:00","22:30",
+  "23:00","23:30","00:00","00:30","01:00","01:30",
+];
 
 export default function WakeUpTab() {
   const [bedtime, setBedtime] = useState("22:30");
@@ -10,20 +16,14 @@ export default function WakeUpTab() {
   return (
     <div className="space-y-6">
       <div>
-        <label htmlFor="bedtime" className="block text-sm font-medium text-slate-300 mb-2">
+        <label className="block text-sm font-medium text-slate-300 mb-3">
           I plan to go to bed at:
         </label>
-        <input
-          id="bedtime"
-          type="time"
-          value={bedtime}
-          onChange={(e) => setBedtime(e.target.value)}
-          className="w-full max-w-xs px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white text-xl font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500 [color-scheme:dark]"
-        />
+        <TimePicker value={bedtime} onChange={setBedtime} presets={BEDTIME_PRESETS} />
       </div>
       <div>
         <p className="text-sm text-slate-400 mb-4">
-          If you fall asleep at <span className="text-white font-medium">{bedtime}</span>, you should wake up at one of these times to feel refreshed:
+          If you fall asleep now, wake up at one of these times to feel refreshed:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {results.map((r) => (
@@ -32,7 +32,7 @@ export default function WakeUpTab() {
         </div>
       </div>
       <p className="text-xs text-slate-500">
-        Based on 90-minute sleep cycles + 14-minute average fall-asleep time (National Sleep Foundation).
+        Based on 90-minute sleep cycles + 15-minute average fall-asleep time (National Sleep Foundation).
       </p>
     </div>
   );
