@@ -77,6 +77,41 @@ export function getRecommendedHours(age: number): AgeGroup & { label: string } {
   return { label: "Older Adult", min: 7, max: 8 };
 }
 
+export interface NapResult {
+  label: string;
+  minutes: number;
+  wakeTime: string;
+  benefit: string;
+  warning: string | null;
+}
+
+export function calculateNapTimes(napStart: string): NapResult[] {
+  const start = parseTime(napStart);
+  return [
+    {
+      label: "Power Nap",
+      minutes: 20,
+      wakeTime: formatTime(start + 20),
+      benefit: "Boosts alertness without entering deep sleep",
+      warning: null,
+    },
+    {
+      label: "Full Cycle Nap",
+      minutes: 90,
+      wakeTime: formatTime(start + 90),
+      benefit: "Completes a full sleep cycle including REM",
+      warning: null,
+    },
+    {
+      label: "30-min Nap",
+      minutes: 30,
+      wakeTime: formatTime(start + 30),
+      benefit: "More rest than a power nap",
+      warning: "Often causes grogginess — you may wake mid-cycle",
+    },
+  ];
+}
+
 export function detectSleepDebt(hoursPlanned: number, age: number): SleepDebtWarning | null {
   const rec = getRecommendedHours(age);
   const deficit = rec.min - hoursPlanned;

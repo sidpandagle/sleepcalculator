@@ -11,7 +11,10 @@ export default function Footer() {
             <a href="tel:+919146178765" className="hover:text-white transition-colors">+91 9146178765</a>
           </div>
         </div>
-        <nav className="flex gap-6">
+        <nav className="flex flex-wrap gap-6">
+          <Link href="/" className="hover:text-white transition-colors">Sleep Calculator</Link>
+          <Link href="/nap-calculator" className="hover:text-white transition-colors">Nap Calculator</Link>
+          <Link href="/sleep-duration-calculator" className="hover:text-white transition-colors">Duration Calculator</Link>
           <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
           <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
         </nav>
