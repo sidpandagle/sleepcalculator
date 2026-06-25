@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { createBrowserClient } from "@supabase/ssr";
 import type { Post } from "@/lib/supabase/types";
+import { generateAllWakeUpTimes } from "@/lib/programmatic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticUrls: MetadataRoute.Sitemap = [
@@ -18,6 +19,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const programmaticUrls: MetadataRoute.Sitemap = generateAllWakeUpTimes().map(({ slug }) => ({
+    url: `https://sleepschedule.in/sleep-calculator/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 0.7,
+  }));
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
   if (!supabaseUrl.startsWith("http")) return staticUrls;
 
@@ -34,5 +42,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticUrls, ...blogUrls];
+  return [...staticUrls, ...programmaticUrls, ...blogUrls];
 }
