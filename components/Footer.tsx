@@ -8,7 +8,6 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} sleepschedule.in. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="mailto:siddhant.pandagle1998@gmail.com" className="hover:text-white transition-colors">siddhant.pandagle1998@gmail.com</a>
-            <a href="tel:+919146178765" className="hover:text-white transition-colors">+91 9146178765</a>
           </div>
         </div>
         <nav className="flex flex-wrap gap-6">
