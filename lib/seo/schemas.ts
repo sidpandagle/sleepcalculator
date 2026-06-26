@@ -26,6 +26,9 @@ export function buildArticleSchema(post: Post) {
     datePublished: post.created_at,
     dateModified: post.updated_at,
     url: `${SITE_URL}/blog/${post.slug}`,
+    ...(post.cover_image && {
+      image: { "@type": "ImageObject", url: post.cover_image, width: 1200, height: 630 },
+    }),
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,

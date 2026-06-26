@@ -5,6 +5,7 @@ import type { Post } from "@/lib/supabase/types";
 
 export const metadata: Metadata = {
   title: "Sleep Blog — Tips, Science & Guides",
+  alternates: { canonical: "https://sleepschedule.in/blog" },
   description:
     "Evidence-based articles on sleep cycles, bedtime routines, sleep calculators, and how to improve your sleep quality.",
   openGraph: {

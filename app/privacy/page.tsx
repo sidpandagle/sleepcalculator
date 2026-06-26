@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy policy for Sleep Schedule — how we collect and use data.",
+  alternates: { canonical: "https://sleepschedule.in/privacy" },
   robots: { index: true, follow: true },
 };
 

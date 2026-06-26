@@ -40,12 +40,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: typedPost.title,
     description: typedPost.meta_description || typedPost.excerpt,
+    alternates: { canonical: `https://sleepschedule.in/blog/${typedPost.slug}` },
     openGraph: {
       title: typedPost.title,
       description: typedPost.meta_description || typedPost.excerpt,
       type: "article",
       publishedTime: typedPost.created_at,
       url: `https://sleepschedule.in/blog/${typedPost.slug}`,
+      ...(typedPost.cover_image && {
+        images: [{ url: typedPost.cover_image, width: 1200, height: 630, alt: typedPost.title }],
+      }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: typedPost.title,
+      description: typedPost.meta_description || typedPost.excerpt,
+      ...(typedPost.cover_image && { images: [typedPost.cover_image] }),
     },
   };
 }
