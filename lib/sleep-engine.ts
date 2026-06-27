@@ -121,3 +121,134 @@ export function detectSleepDebt(hoursPlanned: number, age: number): SleepDebtWar
     message: `You're planning ${deficit} hour${deficit !== 1 ? "s" : ""} less sleep than the CDC recommends for your age group (${rec.min}–${rec.max} hours).`,
   };
 }
+
+// --- Sleep Debt ---
+
+export interface SleepDebtResult {
+  debt: number;
+  surplus: number;
+  recommended: { min: number; max: number };
+  label: string;
+}
+
+export function calculateSleepDebt(hoursSlept: number, age: number): SleepDebtResult {
+  const rec = getRecommendedHours(age);
+  const debt = Math.max(0, Math.round((rec.min - hoursSlept) * 10) / 10);
+  const surplus = Math.max(0, Math.round((hoursSlept - rec.max) * 10) / 10);
+  return { debt, surplus, recommended: { min: rec.min, max: rec.max }, label: rec.label };
+}
+
+// --- REM Sleep ---
+
+export interface REMBreakdown {
+  cycle: number;
+  remMinutes: number;
+}
+
+export interface REMSleepResult {
+  remMinutes: number;
+  remPercent: number;
+  cycles: number;
+  breakdown: REMBreakdown[];
+}
+
+const REM_PER_CYCLE = [10, 20, 30, 40, 50];
+
+export function calculateREMSleep(totalHours: number): REMSleepResult {
+  const cycles = Math.floor((totalHours * 60) / CYCLE_MINUTES);
+  const breakdown: REMBreakdown[] = Array.from({ length: cycles }, (_, i) => ({
+    cycle: i + 1,
+    remMinutes: REM_PER_CYCLE[Math.min(i, REM_PER_CYCLE.length - 1)],
+  }));
+  const remMinutes = breakdown.reduce((sum, c) => sum + c.remMinutes, 0);
+  const remPercent = totalHours > 0 ? Math.round((remMinutes / (totalHours * 60)) * 100) : 0;
+  return { remMinutes, remPercent, cycles, breakdown };
+}
+
+// --- Pregnancy Sleep ---
+
+export interface PregnancySleepNeeds {
+  recommended: number;
+  range: { min: number; max: number };
+  commonIssues: string[];
+  tips: string[];
+}
+
+const PREGNANCY_DATA: Record<1 | 2 | 3, PregnancySleepNeeds> = {
+  1: {
+    recommended: 9,
+    range: { min: 8, max: 10 },
+    commonIssues: [
+      "Fatigue and excessive daytime sleepiness",
+      "Nausea disrupting rest",
+      "Frequent urination at night",
+      "Vivid dreams",
+    ],
+    tips: [
+      "Nap during the day to offset fatigue",
+      "Eat small meals to reduce nausea before bed",
+      "Keep a consistent sleep schedule",
+      "Use extra pillows for comfort",
+    ],
+  },
+  2: {
+    recommended: 8,
+    range: { min: 7, max: 9 },
+    commonIssues: [
+      "Back pain beginning to develop",
+      "Leg cramps at night",
+      "Heartburn and indigestion",
+      "Baby movement starting to be felt",
+    ],
+    tips: [
+      "Sleep on your left side to improve circulation",
+      "Use a pregnancy pillow for back support",
+      "Avoid large meals within 2 hours of bed",
+      "Gentle stretching before sleep",
+    ],
+  },
+  3: {
+    recommended: 9,
+    range: { min: 8, max: 10 },
+    commonIssues: [
+      "Difficulty finding a comfortable position",
+      "Frequent urination throughout the night",
+      "Restless leg syndrome",
+      "Anxiety about labor and delivery",
+    ],
+    tips: [
+      "Use a full-body pregnancy pillow",
+      "Elevate your head to reduce heartburn",
+      "Practice relaxation techniques before bed",
+      "Limit fluid intake 2 hours before bed",
+    ],
+  },
+};
+
+export function getPregnancySleepNeeds(trimester: 1 | 2 | 3): PregnancySleepNeeds {
+  return PREGNANCY_DATA[trimester];
+}
+
+// --- Baby Sleep ---
+
+export interface BabySleepNeeds {
+  total: number;
+  nighttime: number;
+  naps: number;
+  napCount: number;
+  ageLabel: string;
+}
+
+const BABY_SLEEP_RANGES: { maxMonths: number; total: number; nighttime: number; naps: number; napCount: number }[] = [
+  { maxMonths: 1,  total: 16, nighttime: 8.5, naps: 7.5, napCount: 4 },
+  { maxMonths: 3,  total: 15, nighttime: 9,   naps: 6,   napCount: 4 },
+  { maxMonths: 11, total: 14, nighttime: 10,  naps: 4,   napCount: 3 },
+  { maxMonths: 23, total: 13, nighttime: 11,  naps: 2,   napCount: 1 },
+  { maxMonths: 24, total: 12, nighttime: 11,  naps: 1,   napCount: 1 },
+];
+
+export function getBabySleepNeeds(months: number): BabySleepNeeds {
+  const entry = BABY_SLEEP_RANGES.find((r) => months <= r.maxMonths) ?? BABY_SLEEP_RANGES[BABY_SLEEP_RANGES.length - 1];
+  const ageLabel = months === 0 ? "Newborn" : months === 1 ? "1-Month-Old" : `${months}-Month-Old`;
+  return { total: entry.total, nighttime: entry.nighttime, naps: entry.naps, napCount: entry.napCount, ageLabel };
+}
