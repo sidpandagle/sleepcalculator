@@ -9,8 +9,8 @@ const CYCLES = [
   { cycles: 6, hours: 9 },
 ];
 
-export default function DurationTab() {
-  const [age, setAge] = useState(30);
+export default function DurationTab({ initialAge = 30 }: { initialAge?: number }) {
+  const [age, setAge] = useState(initialAge);
   const rec = getRecommendedHours(age);
   return (
     <div className="space-y-6">
