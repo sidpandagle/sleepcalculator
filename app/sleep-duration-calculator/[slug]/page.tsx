@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `Sleep Duration for ${group.ageLabel}s — How Much Sleep You Need`,
     description: `How much sleep do ${group.ageLabel.toLowerCase()}s need? CDC recommends ${group.min}–${group.max} hours per night. See sleep by cycles and whether you're hitting your target.`,
     alternates: { canonical: `https://sleepschedule.in/sleep-duration-calculator/${slug}` },
+    openGraph: { url: `https://sleepschedule.in/sleep-duration-calculator/${slug}` },
   };
 }
 

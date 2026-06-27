@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BabyTab from "@/components/calculator/BabyTab";
 import StructuredData from "@/components/seo/StructuredData";
+import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "Baby Sleep Calculator — How Much Sleep Does Your Baby Need?",
@@ -54,9 +55,15 @@ const faqSchema = {
 };
 
 export default function BabySleepCalculatorPage() {
+  const webAppSchema = buildWebAppSchema(
+    "Baby Sleep Calculator",
+    "https://sleepschedule.in/baby-sleep-calculator",
+    "How much sleep does your baby need? Total sleep, nighttime hours, and nap count for your baby's age, based on AAP guidelines."
+  );
   return (
     <>
       <StructuredData data={faqSchema} />
+      <StructuredData data={webAppSchema} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -64,6 +71,9 @@ export default function BabySleepCalculatorPage() {
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Slide to your baby&apos;s age to see total sleep, nighttime hours, and nap count based on AAP guidelines.
+          </p>
+          <p className="text-xs text-slate-500 mt-3">
+            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
           </p>
         </div>
 
@@ -103,7 +113,58 @@ export default function BabySleepCalculatorPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500 mt-3">Source: American Academy of Pediatrics (AAP)</p>
+          <p className="text-xs text-slate-500 mt-3">
+            Source:{" "}
+            <a href="https://healthychildren.org/English/healthy-living/sleep/Pages/default.aspx" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              American Academy of Pediatrics (AAP)
+            </a>
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">How this calculator works</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Slide to your baby&apos;s age in months. The calculator shows total daily sleep, approximate nighttime sleep, daytime nap hours, and typical nap count — all derived from{" "}
+            <a href="https://healthychildren.org/English/healthy-living/sleep/Pages/default.aspx" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">AAP</a>{" "}
+            sleep guidelines and published pediatric sleep research.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Before 3–4 months, babies lack a fully developed circadian rhythm — sleep is polyphasic and distributed across day and night. Between 4–6 months, the circadian rhythm matures, enabling the longer nighttime stretches most parents notice as &quot;sleeping through the night.&quot;
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Understanding your baby&apos;s sleep needs</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            <strong className="text-white">Nap count matters.</strong> Babies transition through predictable milestones: 4+ naps (newborn) → 3 naps (~4 months) → 2 naps (~9 months) → 1 nap (~15 months) → no nap (~3 years). Dropping naps too early is one of the most common causes of infant overtiredness. An overtired baby produces excess cortisol, which paradoxically makes it harder to fall asleep — not easier.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            <strong className="text-white">Wake windows</strong> — the time a baby can stay awake between sleeps before becoming overtired — are age-dependent and shorter than most parents expect. A 6-week-old can typically only manage 45–60 minutes of wakefulness before needing to sleep again.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Safe sleep guidelines</h2>
+          <p className="text-slate-400 leading-relaxed mb-3">AAP safe sleep recommendations for infants under 12 months:</p>
+          <ul className="space-y-2 text-sm text-slate-400">
+            <li className="flex gap-2"><span className="text-indigo-400 mt-0.5">•</span><span><strong className="text-white">Back to sleep, every time.</strong> Always place babies on their back for every sleep — naps and nighttime.</span></li>
+            <li className="flex gap-2"><span className="text-indigo-400 mt-0.5">•</span><span><strong className="text-white">Firm, flat surface.</strong> A firm sleep surface with a fitted sheet. No soft bedding, pillows, or bumpers.</span></li>
+            <li className="flex gap-2"><span className="text-indigo-400 mt-0.5">•</span><span><strong className="text-white">Room sharing, not bed sharing.</strong> The AAP recommends room sharing (separate sleep surface) for at least the first 6 months.</span></li>
+            <li className="flex gap-2"><span className="text-indigo-400 mt-0.5">•</span><span><strong className="text-white">Avoid overheating.</strong> Dress babies in one layer more than an adult would wear in the same environment.</span></li>
+          </ul>
+          <p className="text-xs text-slate-500 mt-4">
+            Source:{" "}
+            <a href="https://healthychildren.org/English/healthy-living/sleep/Pages/default.aspx" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              American Academy of Pediatrics (AAP) Safe Sleep Guidelines
+            </a>
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
+          <p className="text-slate-400 leading-relaxed">
+            Guidelines represent population averages. A healthy baby sleeping 1–2 hours outside the range who is growing normally, feeding well, and hitting developmental milestones is generally not a cause for concern. Premature infants should have sleep needs assessed based on corrected age, not chronological age. Sleep regressions at 4 months, 8–10 months, and 12 months are normal developmental phases. This tool does not diagnose sleep disorders in infants — consult your pediatrician if you have concerns.
+          </p>
         </section>
 
         <section>

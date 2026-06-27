@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import REMTab from "@/components/calculator/REMTab";
 import StructuredData from "@/components/seo/StructuredData";
+import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "REM Sleep Calculator — How Much REM Sleep Do You Get?",
@@ -54,9 +55,15 @@ const faqSchema = {
 };
 
 export default function REMSleepCalculatorPage() {
+  const webAppSchema = buildWebAppSchema(
+    "REM Sleep Calculator",
+    "https://sleepschedule.in/rem-sleep-calculator",
+    "Calculate how much REM sleep you get based on your total hours of sleep, broken down by sleep cycle."
+  );
   return (
     <>
       <StructuredData data={faqSchema} />
+      <StructuredData data={webAppSchema} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -64,6 +71,9 @@ export default function REMSleepCalculatorPage() {
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Enter how many hours you sleep to see how much REM sleep you get, broken down cycle by cycle.
+          </p>
+          <p className="text-xs text-slate-500 mt-3">
+            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
           </p>
         </div>
 
@@ -97,6 +107,89 @@ export default function REMSleepCalculatorPage() {
           ))}
         </section>
 
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">How this calculator estimates REM</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            This calculator applies polysomnography-based percentages to your total sleep time. REM sleep is not evenly distributed — it concentrates in later cycles. The first 90-minute cycle produces roughly 10 minutes of REM; cycles 4 and 5 produce 45–60 minutes each. The calculator weights these proportions across the number of cycles your sleep duration covers.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            The 20–25% figure comes from population-level polysomnography studies. Your actual REM may vary by 5–10% based on age, alcohol intake, medications, and individual sleep architecture. Use this as a directional estimate, not a clinical measurement.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">REM benchmarks by age</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400">
+                  <th className="pb-2 pr-6 font-medium">Age group</th>
+                  <th className="pb-2 pr-6 font-medium">Total sleep needed</th>
+                  <th className="pb-2 pr-6 font-medium">REM %</th>
+                  <th className="pb-2 font-medium">REM target</th>
+                </tr>
+              </thead>
+              <tbody className="text-slate-300">
+                {[
+                  ["Teenagers (14–17)",    "8–10 hrs", "20–25%", "96–150 min"],
+                  ["Young adults (18–25)", "7–9 hrs",  "20–25%", "84–135 min"],
+                  ["Adults (26–64)",       "7–9 hrs",  "20–25%", "84–135 min"],
+                  ["Older adults (65+)",   "7–8 hrs",  "15–20%", "63–96 min"],
+                ].map(([age, total, pct, target]) => (
+                  <tr key={age} className="border-b border-white/5">
+                    <td className="py-2.5 pr-6 font-semibold text-white">{age}</td>
+                    <td className="py-2.5 pr-6">{total}</td>
+                    <td className="py-2.5 pr-6">{pct}</td>
+                    <td className="py-2.5 text-indigo-300 font-medium">{target}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-slate-500 mt-3">
+            Source:{" "}
+            <a href="https://aasm.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              American Academy of Sleep Medicine (AASM)
+            </a>
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Interpreting your results</h2>
+          <div className="space-y-4">
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">REM within target range</p>
+              <p className="text-sm text-slate-400">Your sleep duration is supporting healthy REM. Continue current habits. If you still feel cognitively sluggish, check total sleep debt first — REM quality matters as much as quantity.</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">REM below target</p>
+              <p className="text-sm text-slate-400">Most commonly caused by insufficient total sleep. Adding one full 90-minute cycle (sleeping 7.5 hrs instead of 6) disproportionately increases REM because REM concentrates in later cycles. Alcohol within 3 hours of bed is the next most common suppressant.</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">REM well above target</p>
+              <p className="text-sm text-slate-400">REM above 30% can indicate REM rebound — your brain compensating for prior REM deprivation. This is normal during recovery. It typically normalizes within 1–2 weeks of consistent adequate sleep.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-6 flex items-start gap-4">
+            <div className="text-2xl">🔗</div>
+            <div>
+              <p className="text-sm font-semibold text-indigo-300 mb-1">Related tool</p>
+              <p className="text-slate-300 text-sm mb-3">Low REM is often a symptom of accumulated sleep debt. See how much sleep you&apos;ve lost this week.</p>
+              <a href="/sleep-debt-calculator" className="text-sm text-indigo-400 font-medium hover:text-indigo-300 transition-colors">Sleep Debt Calculator →</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
+          <p className="text-slate-400 leading-relaxed">
+            This calculator uses population-average REM percentages derived from polysomnography studies. It does not account for individual variation in sleep architecture, sleep disorders (apnea, insomnia, narcolepsy), medications (SSRIs, benzodiazepines, beta-blockers all suppress REM), or night-to-night variability. Consumer wearables estimate REM at 70–80% accuracy versus clinical polysomnography. If you suspect a sleep disorder, consult a sleep medicine physician — this tool cannot diagnose one.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Frequently asked questions</h2>
           <div className="space-y-3">
@@ -127,6 +220,23 @@ export default function REMSleepCalculatorPage() {
               </details>
             ))}
           </div>
+        </section>
+
+        <section className="mt-8 pt-6 border-t border-white/5">
+          <p className="text-xs text-slate-500">
+            Sources:{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              CDC — Sleep and Sleep Disorders
+            </a>
+            {" "}·{" "}
+            <a href="https://www.aasm.org/resources/clinicalguidelines/adult-sleep.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              American Academy of Sleep Medicine (AASM)
+            </a>
+            {" "}·{" "}
+            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              National Sleep Foundation
+            </a>
+          </p>
         </section>
       </div>
     </>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DurationTab from "@/components/calculator/DurationTab";
 import StructuredData from "@/components/seo/StructuredData";
+import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "Sleep Duration Calculator — How Much Sleep Do You Need by Age?",
@@ -55,9 +56,15 @@ const faqSchema = {
 };
 
 export default function SleepDurationCalculatorPage() {
+  const webAppSchema = buildWebAppSchema(
+    "Sleep Duration Calculator",
+    "https://sleepschedule.in/sleep-duration-calculator",
+    "Find out exactly how much sleep you need based on your age. Uses CDC sleep recommendations for children, teenagers, adults, and older adults."
+  );
   return (
     <>
       <StructuredData data={faqSchema} />
+      <StructuredData data={webAppSchema} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -66,6 +73,9 @@ export default function SleepDurationCalculatorPage() {
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             How much sleep do you actually need? Enter your age and see the CDC-recommended
             sleep duration for your age group — and whether your current sleep hits the target.
+          </p>
+          <p className="text-xs text-slate-500 mt-3">
+            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
           </p>
         </div>
 
@@ -102,7 +112,64 @@ export default function SleepDurationCalculatorPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500 mt-3">Source: CDC Sleep Recommendations 2023</p>
+          <p className="text-xs text-slate-500 mt-3">
+            Source:{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              CDC Sleep Recommendations 2023
+            </a>
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">How this calculator works</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Enter your age and the hours you slept last night. The calculator compares your sleep to the CDC-recommended range for your age group and tells you whether you met, exceeded, or fell short of the target. The recommendation shown is the published range — not a single number — because sleep need varies within each age group.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Adults aged 18–64 are the most undersleeping demographic: the{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">CDC</a>{" "}
+            estimates 35% of U.S. adults regularly fall short of 7 hours. For reference, sleeping 6 hours per night for 10 days produces cognitive impairment equivalent to 24 hours of total sleep deprivation, per University of Pennsylvania research.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Why sleep needs change with age</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Sleep requirements are highest in early life because sleep drives brain development, myelination, and growth hormone secretion. School-age children consolidate learning during slow-wave sleep — skimping on sleep measurably impairs academic performance and emotional regulation.
+          </p>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Teenagers need more sleep than adults (8–10 hours) partly because of the pubertal shift in circadian phase — their biology pushes bedtime later and wake time later. Early school start times force most teens into chronic sleep deprivation. The{" "}
+            <a href="https://aasm.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">AASM</a>{" "}
+            advocates for middle and high school start times no earlier than 8:30 AM.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Older adults (65+) need slightly less sleep (7–8 hours) and experience structural changes: less deep slow-wave sleep, more fragmentation, and earlier natural wake times. This is normal aging, not insomnia — though the two often coexist.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Interpreting your result</h2>
+          <div className="space-y-4">
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">Within the recommended range</p>
+              <p className="text-sm text-slate-400">Your sleep duration is meeting the population-level recommendation. If you still feel tired, consider sleep quality factors: timing relative to your chronotype, sleep debt from previous nights, or sleep-disordered breathing.</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">Below the recommendation</p>
+              <p className="text-sm text-slate-400">A single night below target is not concerning — a pattern of 5+ nights per week is. Track your weekly average and aim to close the gap by going to bed earlier rather than sleeping later.</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">Above the recommendation</p>
+              <p className="text-sm text-slate-400">Occasionally sleeping more (e.g., after sleep deprivation) is normal recovery. Consistently sleeping 10+ hours and still feeling unrefreshed can indicate sleep apnea, depression, or thyroid dysfunction — worth mentioning to a doctor.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
+          <p className="text-slate-400 leading-relaxed">
+            CDC recommendations are population-level guidelines, not individually calibrated targets. Your personal sleep need may fall outside the typical range — some adults function well on 6 hours; others need 9. Sleep quality, sleep disorder presence, and accumulated sleep debt all affect how refreshed you feel at any given duration. This tool provides a reference point, not a diagnosis.
+          </p>
         </section>
 
         <section>

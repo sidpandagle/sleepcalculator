@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NapTab from "@/components/calculator/NapTab";
 import StructuredData from "@/components/seo/StructuredData";
+import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "Nap Calculator — Best Nap Duration & Wake Up Time",
@@ -55,9 +56,15 @@ const faqSchema = {
 };
 
 export default function NapCalculatorPage() {
+  const webAppSchema = buildWebAppSchema(
+    "Nap Calculator",
+    "https://sleepschedule.in/nap-calculator",
+    "Find the perfect nap duration. A 20-minute power nap boosts alertness without grogginess. A 90-minute nap completes a full sleep cycle."
+  );
   return (
     <>
       <StructuredData data={faqSchema} />
+      <StructuredData data={webAppSchema} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -66,6 +73,9 @@ export default function NapCalculatorPage() {
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Pick your nap start time and get the perfect alarm. A 20-minute power nap or a
             90-minute full cycle — both wake you up without grogginess.
+          </p>
+          <p className="text-xs text-slate-500 mt-3">
+            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
           </p>
         </div>
 
@@ -99,6 +109,78 @@ export default function NapCalculatorPage() {
           ))}
         </section>
 
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">How this calculator works</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Enter your nap start time and the calculator adds 20 minutes (power nap) and 90 minutes (full cycle) to give you wake alarms for both durations. The 20-minute duration is chosen to keep you in Stage 1 and Stage 2 light sleep — short enough that most people don&apos;t enter deep slow-wave sleep (N3), which is what causes sleep inertia. The 90-minute duration allows a complete N1 → N2 → N3 → REM cycle, so you wake at the end of REM rather than mid-N3.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            A sleep onset buffer is not applied to naps (unlike nighttime sleep) because many people fall asleep faster when napping during the day. If you typically take 10+ minutes to fall asleep for naps, set your start time 10 minutes earlier.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Optimal nap window by wake time</h2>
+          <p className="text-slate-400 mb-4 text-sm">Napping too late reduces nighttime sleep drive. This table shows the latest recommended nap start time based on your wake time, assuming a 10–11 PM bedtime.</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400">
+                  <th className="pb-2 pr-6 font-medium">Wake time</th>
+                  <th className="pb-2 pr-6 font-medium">Latest 20-min nap start</th>
+                  <th className="pb-2 font-medium">Latest 90-min nap start</th>
+                </tr>
+              </thead>
+              <tbody className="text-slate-300">
+                {[
+                  ["5:00 AM", "3:00 PM", "1:30 PM"],
+                  ["6:00 AM", "3:30 PM", "2:00 PM"],
+                  ["7:00 AM", "4:00 PM", "2:30 PM"],
+                  ["8:00 AM", "4:30 PM", "3:00 PM"],
+                  ["9:00 AM", "5:00 PM", "3:30 PM"],
+                ].map(([wake, max20, max90]) => (
+                  <tr key={wake} className="border-b border-white/5">
+                    <td className="py-2.5 pr-6 font-semibold text-white">{wake}</td>
+                    <td className="py-2.5 pr-6 text-indigo-300 font-medium">{max20}</td>
+                    <td className="py-2.5 text-indigo-300 font-medium">{max90}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-slate-500 mt-3">Based on a standard 10–11 PM bedtime target. Adjust proportionally for later bedtimes.</p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Interpreting your nap alarm</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            The <strong className="text-white">20-minute alarm</strong> is best for a quick alertness boost before an afternoon meeting, a commute, or exercise. Expect to feel alert within 5 minutes of waking — no grogginess, immediate performance improvement. The{" "}
+            <a href="https://ntrs.nasa.gov/citations/19950006329" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">NASA nap study (Rosekind et al., 1994)</a>{" "}
+            showed this duration improves alertness by 54% and performance by 34% in pilots.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            The <strong className="text-white">90-minute alarm</strong> is best when you need to consolidate learning, recover from significant sleep debt, or have 2+ hours before your next commitment. Expect minimal grogginess because you&apos;re waking from the end of REM or light N2 — not from deep sleep. Allow yourself 5 minutes to fully orient before driving or precision work.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-6 flex items-start gap-4">
+            <div className="text-2xl">🔗</div>
+            <div>
+              <p className="text-sm font-semibold text-indigo-300 mb-1">Related tool</p>
+              <p className="text-slate-300 text-sm mb-3">Needing a daily nap to function often signals accumulated sleep debt. See how much sleep you&apos;ve lost this week.</p>
+              <a href="/sleep-debt-calculator" className="text-sm text-indigo-400 font-medium hover:text-indigo-300 transition-colors">Sleep Debt Calculator →</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
+          <p className="text-slate-400 leading-relaxed">
+            Nap duration recommendations are based on population-average sleep cycle lengths of 90 minutes. Individual cycles range from 70–110 minutes. If you consistently wake feeling groggy from a 20-minute nap, your sleep onset may be faster than average — try 15 minutes. If you regularly feel groggy after 90 minutes, your cycle may be shorter — try 75 minutes. Napping is not a substitute for adequate nighttime sleep and cannot fully repay chronic sleep debt.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Frequently asked questions</h2>
           <div className="space-y-3">
@@ -129,6 +211,19 @@ export default function NapCalculatorPage() {
               </details>
             ))}
           </div>
+        </section>
+
+        <section className="mt-8 pt-6 border-t border-white/5">
+          <p className="text-xs text-slate-500">
+            Sources:{" "}
+            <a href="https://ntrs.nasa.gov/citations/19950006329" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              NASA Technical Memorandum 108839 — Rosekind et al. (1994)
+            </a>
+            {" "}·{" "}
+            <a href="https://www.thensf.org/sleep-in-america-polls/" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              National Sleep Foundation
+            </a>
+          </p>
         </section>
       </div>
     </>

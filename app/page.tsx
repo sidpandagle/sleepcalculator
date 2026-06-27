@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import SleepCalculator from "@/components/calculator/SleepCalculator";
 import StructuredData from "@/components/seo/StructuredData";
-import { buildWebSiteSchema, buildFAQSchema } from "@/lib/seo/schemas";
+import { buildWebSiteSchema, buildFAQSchema, buildOrganizationSchema, buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "Sleep Calculator — Find Your Perfect Bedtime & Wake Up Time",
@@ -19,6 +19,12 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const websiteSchema = buildWebSiteSchema();
+  const orgSchema = buildOrganizationSchema();
+  const webAppSchema = buildWebAppSchema(
+    "Sleep Calculator",
+    "https://sleepschedule.in",
+    "Free sleep calculator based on 90-minute sleep cycles. Find the best bedtime or wake-up time to feel refreshed."
+  );
   const faqSchema = buildFAQSchema([
     {
       question: "What is a sleep calculator?",
@@ -41,6 +47,8 @@ export default function HomePage() {
   return (
     <>
       <StructuredData data={websiteSchema} />
+      <StructuredData data={orgSchema} />
+      <StructuredData data={webAppSchema} />
       <StructuredData data={faqSchema} />
       <div className="max-w-5xl mx-auto px-4 py-12">
         {/* Hero */}
@@ -52,13 +60,18 @@ export default function HomePage() {
             Based on 90-minute sleep cycles. Find the perfect time to wake up, go to sleep, or
             discover how much sleep your body actually needs.
           </p>
+          <p className="text-xs text-slate-500 mt-3">
+            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
+          </p>
         </div>
 
         {/* Calculator */}
         <SleepCalculator />
 
         {/* How it works */}
-        <section className="mt-16 grid md:grid-cols-3 gap-6">
+        <section className="mt-16">
+        <h2 className="text-xl font-bold text-white mb-6 text-center">How it works</h2>
+        <div className="grid md:grid-cols-3 gap-6">
           {[
             {
               icon: "🔄",
@@ -82,6 +95,7 @@ export default function HomePage() {
               <p className="text-sm text-slate-400">{body}</p>
             </div>
           ))}
+        </div>
         </section>
 
         {/* FAQ Section */}
@@ -113,6 +127,33 @@ export default function HomePage() {
                 </summary>
                 <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
               </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-20">
+          <h2 className="text-2xl font-bold text-white mb-3 text-center">Popular wake-up times</h2>
+          <p className="text-slate-400 text-center mb-8 text-sm">See bedtime recommendations for the most common morning alarm times.</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 max-w-3xl mx-auto">
+            {[
+              { time: "5:00 AM",  slug: "5am-wakeup" },
+              { time: "5:30 AM",  slug: "530am-wakeup" },
+              { time: "6:00 AM",  slug: "6am-wakeup" },
+              { time: "6:30 AM",  slug: "630am-wakeup" },
+              { time: "7:00 AM",  slug: "7am-wakeup" },
+              { time: "7:30 AM",  slug: "730am-wakeup" },
+              { time: "8:00 AM",  slug: "8am-wakeup" },
+              { time: "8:30 AM",  slug: "830am-wakeup" },
+              { time: "9:00 AM",  slug: "9am-wakeup" },
+              { time: "10:00 AM", slug: "10am-wakeup" },
+            ].map(({ time, slug }) => (
+              <a
+                key={slug}
+                href={`/sleep-calculator/${slug}`}
+                className="rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-indigo-500/50 transition-colors p-4 text-center text-sm font-medium text-slate-300 hover:text-white"
+              >
+                Wake at {time}
+              </a>
             ))}
           </div>
         </section>

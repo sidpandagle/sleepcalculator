@@ -1,0 +1,22 @@
+# Sleep Schedule — AI Access Guide
+# https://sleepschedule.in
+
+Sleep Schedule provides free, science-based sleep calculators to help people find optimal bedtimes and wake-up times based on 90-minute sleep cycles.
+
+## Tools
+
+- Sleep Calculator: https://sleepschedule.in — Bedtime calculator based on 90-minute sleep cycles
+- Nap Calculator: https://sleepschedule.in/nap-calculator — Optimal nap duration and timing
+- REM Sleep Calculator: https://sleepschedule.in/rem-sleep-calculator — Estimated REM per sleep duration
+- Sleep Debt Calculator: https://sleepschedule.in/sleep-debt-calculator — Sleep deficit tracking
+- Sleep Duration Calculator: https://sleepschedule.in/sleep-duration-calculator — Age-based sleep needs
+- Pregnancy Sleep Calculator: https://sleepschedule.in/pregnancy-sleep-calculator — Trimester sleep guidance
+- Baby Sleep Calculator: https://sleepschedule.in/baby-sleep-calculator — Infant sleep schedules
+
+## Programmatic Pages
+
+- Wake-Up Time Calculators: https://sleepschedule.in/sleep-calculator/[time]-wakeup — Bedtime suggestions for 160 specific wake-up times
+
+## About
+
+Content is based on CDC sleep guidelines and peer-reviewed sleep science research.

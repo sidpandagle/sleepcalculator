@@ -6,6 +6,8 @@ import { calculateBedtimes } from "@/lib/sleep-engine";
 import { display12h } from "@/lib/time-utils";
 import ResultCard from "@/components/calculator/ResultCard";
 import StructuredData from "@/components/seo/StructuredData";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export function generateStaticParams() {
   return generateAllWakeUpTimes().map(({ slug }) => ({ slug }));
@@ -20,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `Bedtime Calculator for ${display} Wake Up`,
     description: `If you want to wake up at ${display}, find the best time to go to sleep based on 90-minute sleep cycles. Avoid grogginess with perfectly timed bedtimes.`,
     alternates: { canonical: `https://sleepschedule.in/sleep-calculator/${slug}` },
+    openGraph: { url: `https://sleepschedule.in/sleep-calculator/${slug}` },
   };
 }
 
@@ -64,9 +67,20 @@ export default async function WakeUpPage({ params }: { params: Promise<{ slug: s
     ],
   };
 
+  const webAppSchema = buildWebAppSchema(
+    `Bedtime Calculator for ${display} Wake Up`,
+    `https://sleepschedule.in/sleep-calculator/${slug}`,
+    `Find the best time to go to sleep to wake up at ${display} feeling refreshed, based on 90-minute sleep cycles.`
+  );
+
   return (
     <>
       <StructuredData data={faqSchema} />
+      <StructuredData data={webAppSchema} />
+      <BreadcrumbSchema items={[
+        { name: "Sleep Calculator", url: "https://sleepschedule.in" },
+        { name: `Wake up at ${display}`, url: `https://sleepschedule.in/sleep-calculator/${slug}` },
+      ]} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <nav className="text-sm text-slate-400 mb-8">
           <Link href="/" className="hover:text-white transition-colors">Sleep Calculator</Link>

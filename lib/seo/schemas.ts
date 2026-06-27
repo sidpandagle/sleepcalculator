@@ -9,10 +9,47 @@ export function buildWebSiteSchema() {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_URL}/blog?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
+  };
+}
+
+export function buildOrganizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/favicon.ico`,
+      width: 48,
+      height: 48,
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      url: `${SITE_URL}/contact`,
+      contactType: "customer support",
+    },
+  };
+}
+
+export function buildWebAppSchema(name: string, url: string, description: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name,
+    url,
+    description,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
     },
   };
 }
@@ -29,10 +66,21 @@ export function buildArticleSchema(post: Post) {
     ...(post.cover_image && {
       image: { "@type": "ImageObject", url: post.cover_image, width: 1200, height: 630 },
     }),
+    author: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon.ico`,
+        width: 48,
+        height: 48,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

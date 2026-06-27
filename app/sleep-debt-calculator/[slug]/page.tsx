@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `Sleep Debt Calculator — You Slept ${hours} Hour${hours !== 1 ? "s" : ""}`,
     description: `Find out how much sleep debt you've accumulated after ${hours} hour${hours !== 1 ? "s" : ""} of sleep. See your deficit vs CDC recommendations by age group.`,
     alternates: { canonical: `https://sleepschedule.in/sleep-debt-calculator/${slug}` },
+    openGraph: { url: `https://sleepschedule.in/sleep-debt-calculator/${slug}` },
   };
 }
 

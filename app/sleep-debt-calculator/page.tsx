@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SleepDebtTab from "@/components/calculator/SleepDebtTab";
 import StructuredData from "@/components/seo/StructuredData";
+import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "Sleep Debt Calculator — How Much Sleep Have You Lost?",
@@ -54,9 +55,15 @@ const faqSchema = {
 };
 
 export default function SleepDebtCalculatorPage() {
+  const webAppSchema = buildWebAppSchema(
+    "Sleep Debt Calculator",
+    "https://sleepschedule.in/sleep-debt-calculator",
+    "Calculate your sleep debt based on last night's sleep and your age. See how many hours short you are of CDC recommendations."
+  );
   return (
     <>
       <StructuredData data={faqSchema} />
+      <StructuredData data={webAppSchema} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -64,6 +71,9 @@ export default function SleepDebtCalculatorPage() {
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Enter how many hours you slept and your age to see your sleep debt versus CDC recommendations.
+          </p>
+          <p className="text-xs text-slate-500 mt-3">
+            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
           </p>
         </div>
 
@@ -100,7 +110,57 @@ export default function SleepDebtCalculatorPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500 mt-3">Source: CDC Sleep Recommendations 2023</p>
+          <p className="text-xs text-slate-500 mt-3">
+            Source:{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              CDC Sleep Recommendations 2023
+            </a>
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">How this calculator works</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            The calculator compares your actual sleep hours against the CDC-recommended minimum for your age group. The deficit shown is a single-night estimate. For a 7-day rolling total, enter each night&apos;s sleep and sum the deficits — a week of 6-hour nights when you need 8 accumulates 14 hours of debt.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Sleep need is used as the midpoint of the CDC range for your age (e.g., 8 hours for adults 18–64, where the range is 7–9). If you know your personal sleep need differs from the midpoint, adjust accordingly.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Understanding your sleep debt score</h2>
+          <div className="space-y-4">
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">0–1 hour deficit</p>
+              <p className="text-sm text-slate-400">Within normal variation. Minor fatigue may be felt but cognitive performance is largely intact. One full night&apos;s sleep restores baseline.</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">1–3 hours deficit</p>
+              <p className="text-sm text-slate-400">Measurable impairment in reaction time, working memory, and emotional regulation. Research from the University of Pennsylvania shows this level of debt accumulates to 24-hour deprivation equivalence within 10 days if sustained.</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">3+ hours deficit</p>
+              <p className="text-sm text-slate-400">Significant impairment. Prefrontal cortex function — governing decision-making and impulse control — is most affected. People at this level consistently underestimate their own impairment. Address the root cause before attempting recovery.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">How to recover from sleep debt</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Add 30–60 minutes per night above your normal sleep need until the deficit is repaid. Going to bed earlier is more effective than sleeping later — it protects your wake time anchor, which stabilizes your circadian rhythm. Avoid attempting to recover all debt in one session (e.g., sleeping 12 hours) — this overshoots and disrupts your clock without meaningfully faster recovery.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Short-term debt (2–5 hours total) resolves in 1–3 nights of adequate sleep. Chronic debt accumulated over weeks requires 2–3 weeks of consistent adequate sleep to fully restore baseline cognitive performance, per research published in <em>Sleep</em>.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
+          <p className="text-slate-400 leading-relaxed">
+            This calculator uses a single-night snapshot. It does not account for cumulative weekly debt, individual variation in sleep need, sleep quality (fragmented sleep of 8 hours differs from consolidated 8 hours), or pre-existing sleep disorders. The CDC midpoint is used as the reference — your personal need may be higher or lower within the published range. This tool does not diagnose sleep deprivation or any health condition.
+          </p>
         </section>
 
         <section>

@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `Baby Sleep Calculator — ${data.ageLabel} Sleep Schedule`,
     description: `How much sleep does a ${data.ageLabel.toLowerCase()} need? See total sleep, nighttime hours, and nap count based on AAP guidelines.`,
     alternates: { canonical: `https://sleepschedule.in/baby-sleep-calculator/${slug}` },
+    openGraph: { url: `https://sleepschedule.in/baby-sleep-calculator/${slug}` },
   };
 }
 

@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `Pregnancy Sleep Calculator — ${label} Trimester`,
     description: `How much sleep do you need in your ${label.toLowerCase()} trimester? Get recommendations, common sleep issues, and tips for better pregnancy sleep.`,
     alternates: { canonical: `https://sleepschedule.in/pregnancy-sleep-calculator/${slug}` },
+    openGraph: { url: `https://sleepschedule.in/pregnancy-sleep-calculator/${slug}` },
   };
 }
 

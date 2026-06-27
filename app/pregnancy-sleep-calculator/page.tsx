@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PregnancyTab from "@/components/calculator/PregnancyTab";
 import StructuredData from "@/components/seo/StructuredData";
+import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
   title: "Pregnancy Sleep Calculator — How Much Sleep Do You Need?",
@@ -54,9 +55,15 @@ const faqSchema = {
 };
 
 export default function PregnancySleepCalculatorPage() {
+  const webAppSchema = buildWebAppSchema(
+    "Pregnancy Sleep Calculator",
+    "https://sleepschedule.in/pregnancy-sleep-calculator",
+    "Trimester-specific sleep recommendations, common sleep issues, and tips for better pregnancy sleep based on ACOG and NSF guidelines."
+  );
   return (
     <>
       <StructuredData data={faqSchema} />
+      <StructuredData data={webAppSchema} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -64,6 +71,9 @@ export default function PregnancySleepCalculatorPage() {
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Select your trimester to see how much sleep you need, common sleep issues, and tips to help you rest better.
+          </p>
+          <p className="text-xs text-slate-500 mt-3">
+            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
           </p>
         </div>
 
@@ -97,6 +107,66 @@ export default function PregnancySleepCalculatorPage() {
           ))}
         </section>
 
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Why pregnancy disrupts sleep</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Each trimester introduces distinct hormonal and physical changes that alter sleep architecture. In the first trimester, progesterone surges cause excessive daytime sleepiness while simultaneously fragmenting nighttime sleep. In the second trimester, progesterone levels stabilize — this is typically the most sleep-friendly period. The third trimester brings mechanical disruption: fetal movement, frequent urination, reflux, and musculoskeletal discomfort combine to reduce both sleep duration and quality.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Poor sleep during pregnancy carries measurable consequences. Research published in <em>Sleep Medicine</em> links less than 6 hours per night in the first trimester to significantly higher rates of gestational diabetes. Third-trimester sleep disruption is associated with longer labor duration and increased rates of caesarean delivery, per the{" "}
+            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              American College of Obstetricians and Gynecologists (ACOG)
+            </a>.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Sleep changes by trimester</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400">
+                  <th className="pb-2 pr-4 font-medium">Trimester</th>
+                  <th className="pb-2 pr-4 font-medium">Sleep need</th>
+                  <th className="pb-2 pr-4 font-medium">Main disruptors</th>
+                  <th className="pb-2 font-medium">Key intervention</th>
+                </tr>
+              </thead>
+              <tbody className="text-slate-300">
+                {[
+                  ["First (wks 1–12)",   "8–10 hrs", "Progesterone surge, nausea, frequent urination", "Nap freely; prioritize total sleep"],
+                  ["Second (wks 13–26)", "8–9 hrs",  "Growing belly, round ligament pain, vivid dreams", "Start side sleeping; body pillow"],
+                  ["Third (wks 27–40)",  "8–10 hrs", "Fetal movement, reflux, RLS, anxiety",            "Wedge pillow; limit fluids after 6 PM"],
+                ].map(([trimester, need, disruptors, intervention]) => (
+                  <tr key={trimester} className="border-b border-white/5 align-top">
+                    <td className="py-2.5 pr-4 font-semibold text-white whitespace-nowrap">{trimester}</td>
+                    <td className="py-2.5 pr-4 text-indigo-300 font-medium whitespace-nowrap">{need}</td>
+                    <td className="py-2.5 pr-4">{disruptors}</td>
+                    <td className="py-2.5">{intervention}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Interpreting your results</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            The calculator shows the recommended range for your trimester and whether your current sleep meets it. Meeting the recommended range means your sleep duration is supporting fetal development and maternal health. Falling below it consistently warrants attention — but short-term disruption (illness, travel, stress) is normal and not immediately concerning.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Sleeping significantly above the recommendation (10+ hours while still feeling unrefreshed) can indicate anemia, thyroid dysfunction, or sleep-disordered breathing — all more common during pregnancy. Mention this to your OB or midwife.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
+          <p className="text-slate-400 leading-relaxed">
+            This tool provides general sleep duration guidance based on ACOG and NSF recommendations. It does not account for multiple pregnancies, pre-existing sleep disorders, high-risk pregnancy conditions, or individual variation in sleep need. Pregnancy-specific sleep issues — restless leg syndrome, sleep apnea (which increases in the third trimester), and insomnia — require evaluation by a healthcare provider, not a calculator. Always consult your doctor or midwife before making changes to your sleep routine during pregnancy.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Frequently asked questions</h2>
           <div className="space-y-3">
@@ -127,6 +197,19 @@ export default function PregnancySleepCalculatorPage() {
               </details>
             ))}
           </div>
+        </section>
+
+        <section className="mt-8 pt-6 border-t border-white/5">
+          <p className="text-xs text-slate-500">
+            Sources:{" "}
+            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              American College of Obstetricians and Gynecologists (ACOG)
+            </a>
+            {" "}·{" "}
+            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+              National Sleep Foundation (NSF)
+            </a>
+          </p>
         </section>
       </div>
     </>

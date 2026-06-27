@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `REM Sleep Calculator — ${hours} Hours of Sleep`,
     description: `How much REM sleep do you get in ${hours} hours? See estimated REM time broken down by sleep cycle.`,
     alternates: { canonical: `https://sleepschedule.in/rem-sleep-calculator/${slug}` },
+    openGraph: { url: `https://sleepschedule.in/rem-sleep-calculator/${slug}` },
   };
 }
 
