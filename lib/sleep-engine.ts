@@ -161,7 +161,7 @@ export function calculateREMSleep(totalHours: number): REMSleepResult {
     remMinutes: REM_PER_CYCLE[Math.min(i, REM_PER_CYCLE.length - 1)],
   }));
   const remMinutes = breakdown.reduce((sum, c) => sum + c.remMinutes, 0);
-  const remPercent = totalHours > 0 ? Math.round((remMinutes / (totalHours * 60)) * 100) : 0;
+  const remPercent = totalHours > 0 ? Math.min(25, Math.round((remMinutes / (totalHours * 60)) * 100)) : 0;
   return { remMinutes, remPercent, cycles, breakdown };
 }
 
