@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { generateSleepDurationSlugs, slugToSleepDurationGroup } from "@/lib/programmatic";
-import { getRecommendedHours } from "@/lib/sleep-engine";
 import DurationTab from "@/components/calculator/DurationTab";
 import StructuredData from "@/components/seo/StructuredData";
 
@@ -25,8 +24,6 @@ export default async function SleepDurationSlugPage({ params }: { params: Promis
   const { slug } = await params;
   const group = slugToSleepDurationGroup(slug);
   if (!group) notFound();
-
-  const rec = getRecommendedHours(group.representativeAge);
 
   const allGroups = generateSleepDurationSlugs();
   const otherGroups = allGroups.filter((g) => g.slug !== slug);

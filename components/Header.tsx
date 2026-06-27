@@ -5,9 +5,13 @@ import { usePathname } from "next/navigation";
 import { useState, useRef } from "react";
 
 const CALCULATORS = [
-  { href: "/", label: "Sleep Calculator", desc: "Bedtime & wake-up times", icon: "🌙" },
-  { href: "/nap-calculator", label: "Nap Calculator", desc: "Power nap & full cycle", icon: "💤" },
-  { href: "/sleep-duration-calculator", label: "Duration Calculator", desc: "How much sleep you need", icon: "⏱️" },
+  { href: "/",                            label: "Sleep Calculator",         desc: "Bedtime & wake-up times",          icon: "🌙" },
+  { href: "/nap-calculator",              label: "Nap Calculator",           desc: "Power nap & full cycle",           icon: "💤" },
+  { href: "/sleep-duration-calculator",   label: "Duration Calculator",      desc: "How much sleep you need",          icon: "⏱️" },
+  { href: "/sleep-debt-calculator",       label: "Sleep Debt Calculator",    desc: "How much sleep you've lost",       icon: "📉" },
+  { href: "/rem-sleep-calculator",        label: "REM Sleep Calculator",     desc: "REM time by sleep hours",          icon: "🧠" },
+  { href: "/pregnancy-sleep-calculator",  label: "Pregnancy Calculator",     desc: "Sleep needs by trimester",         icon: "🤰" },
+  { href: "/baby-sleep-calculator",       label: "Baby Sleep Calculator",    desc: "Sleep schedule by baby age",       icon: "👶" },
 ];
 
 export default function Header() {
