@@ -6,7 +6,7 @@ import { buildWebSiteSchema, buildFAQSchema, buildOrganizationSchema, buildWebAp
 export const metadata: Metadata = {
   title: "Sleep Calculator — Find Your Perfect Bedtime & Wake Up Time",
   description:
-    "Free sleep calculator based on 90-minute sleep cycles. Find the best bedtime or wake up time to feel refreshed. Includes age-based CDC sleep recommendations.",
+    "Free sleep calculator using 90-minute cycles. Find your ideal bedtime or wake-up time. Based on CDC sleep recommendations.",
   alternates: { canonical: "https://sleepschedule.in" },
   keywords: ["sleep calculator", "bedtime calculator", "wake up time calculator", "sleep cycle calculator"],
   openGraph: {
