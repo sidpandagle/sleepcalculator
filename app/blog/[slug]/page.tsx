@@ -12,6 +12,8 @@ interface Props {
   params: { slug: string };
 }
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
   if (!url.startsWith("http")) return [];
