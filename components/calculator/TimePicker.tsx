@@ -23,7 +23,7 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
   }, [value]);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 min-w-0">
       <div className="flex items-center gap-3">
         <button
           onClick={() => nudge(-15)}

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { calculateNapTimes } from "@/lib/sleep-engine";
 import { display12h } from "@/lib/time-utils";
 import TimePicker from "./TimePicker";
@@ -23,7 +23,8 @@ const NAP_ICONS: Record<string, string> = {
 };
 
 export default function NapTab() {
-  const [napStart, setNapStart] = useState(getCurrentHHMM);
+  const [napStart, setNapStart] = useState("14:00");
+  useEffect(() => { setNapStart(getCurrentHHMM()); }, []);
   const results = calculateNapTimes(napStart);
 
   return (
