@@ -46,8 +46,8 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
           + 15 min
         </button>
       </div>
-      <div className="sm:overflow-hidden">
-      <div className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto sm:[&::-webkit-scrollbar]:hidden sm:[scrollbar-width:none] gap-2 px-1 py-1">
+      <div className="overflow-x-auto [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+      <div className="flex flex-nowrap gap-2 px-1 py-1">
         {presets.map((preset) => {
           const active = preset === value;
           return (
@@ -59,7 +59,7 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
               }}
               onClick={() => onChange(preset)}
               aria-pressed={active}
-              className={`sm:shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+              className={`shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 active
                   ? "bg-indigo-600 text-white"
                   : "bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10"
