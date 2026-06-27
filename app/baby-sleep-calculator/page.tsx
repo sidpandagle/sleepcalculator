@@ -75,6 +75,9 @@ export default function BabySleepCalculatorPage() {
           <p className="text-xs text-slate-500 mt-3">
             <time dateTime="2026-06-27">Last reviewed: June 2026</time>
           </p>
+          <p className="text-xs text-amber-500/80 mt-2 max-w-xl mx-auto">
+            For general guidance only. Always consult your pediatrician for your baby&apos;s individual needs.
+          </p>
         </div>
 
         <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 mb-12">
@@ -163,7 +166,7 @@ export default function BabySleepCalculatorPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
           <p className="text-slate-400 leading-relaxed">
-            Guidelines represent population averages. A healthy baby sleeping 1–2 hours outside the range who is growing normally, feeding well, and hitting developmental milestones is generally not a cause for concern. Premature infants should have sleep needs assessed based on corrected age, not chronological age. Sleep regressions at 4 months, 8–10 months, and 12 months are normal developmental phases. This tool does not diagnose sleep disorders in infants — consult your pediatrician if you have concerns.
+            Guidelines represent population averages. A healthy baby sleeping 1–2 hours outside the range who is growing normally, feeding well, and hitting developmental milestones is generally not a cause for concern. Premature infants should have sleep needs assessed based on corrected age, not chronological age. Sleep regressions at 4 months, 8–10 months, and 12 months are normal developmental phases. This tool does not diagnose sleep disorders in infants. Always consult your pediatrician before making changes to your baby&apos;s sleep routine — this calculator provides general guidance only and is not a substitute for professional medical advice.
           </p>
         </section>
 
