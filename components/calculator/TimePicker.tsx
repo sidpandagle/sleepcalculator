@@ -46,8 +46,7 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
           + 15 min
         </button>
       </div>
-      <div className="overflow-x-auto [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
-      <div className="flex flex-nowrap gap-2 px-1 py-1">
+      <div className="flex flex-nowrap overflow-x-auto gap-2 px-1 py-1 [&::-webkit-scrollbar]:hidden" style={{scrollbarWidth: "none"}}>
         {presets.map((preset) => {
           const active = preset === value;
           return (
@@ -69,7 +68,6 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
             </button>
           );
         })}
-      </div>
       </div>
     </div>
   );

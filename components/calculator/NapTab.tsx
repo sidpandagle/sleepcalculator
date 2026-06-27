@@ -28,7 +28,7 @@ export default function NapTab() {
 
   return (
     <div className="space-y-6">
-      <fieldset className="border-0 p-0 m-0">
+      <fieldset className="border-0 p-0 m-0 w-full min-w-0">
         <legend className="block text-sm font-medium text-slate-300 mb-3">
           I want to start napping at:
         </legend>
