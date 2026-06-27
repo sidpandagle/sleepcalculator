@@ -16,7 +16,8 @@ async function submitContact(formData: FormData) {
   const message = (formData.get("message") as string | null)?.trim() ?? "";
   if (!name || !email || !message) redirect("/contact?error=1");
   const supabase = createServerClient();
-  await supabase.from("contact_submissions").insert({ name, email, message });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await (supabase as any).from("contact_submissions").insert({ name, email, message });
   redirect("/contact?sent=1");
 }
 

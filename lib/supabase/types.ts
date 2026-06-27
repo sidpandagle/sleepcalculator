@@ -14,9 +14,25 @@ export interface Post {
 export type PostInsert = Omit<Post, "id" | "created_at" | "updated_at">;
 export type PostUpdate = Partial<PostInsert>;
 
+export interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  created_at: string;
+}
+
+export type ContactSubmissionInsert = Omit<ContactSubmission, "id" | "created_at">;
+
 export interface Database {
   public: {
     Tables: {
+      contact_submissions: {
+        Row: ContactSubmission;
+        Insert: ContactSubmissionInsert;
+        Update: Partial<ContactSubmissionInsert>;
+        Relationships: [];
+      };
       posts: {
         Row: Post;
         Insert: PostInsert;
