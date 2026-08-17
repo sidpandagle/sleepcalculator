@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Brain, TrendingUp, Moon, ChevronDown } from "lucide-react";
 import REMTab from "@/components/calculator/REMTab";
 import StructuredData from "@/components/seo/StructuredData";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
@@ -51,6 +53,14 @@ const faqSchema = {
         text: "Yes. Alcohol suppresses REM sleep in the first half of the night. As alcohol metabolizes in the second half, REM rebounds — often causing vivid dreams and fragmented sleep. Even moderate drinking reduces total REM time.",
       },
     },
+    {
+      "@type": "Question",
+      name: "Is my REM sleep normal for my age?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "It depends on your age group. Per CDC and AASM guidance, healthy adults spend roughly 20–25% of total sleep in REM; teenagers and young adults tend toward the higher end of that range, while adults 65 and older typically see REM settle to around 15–20%. Compare your calculated REM percentage to the age benchmark table rather than a single fixed number.",
+      },
+    },
   ],
 };
 
@@ -58,12 +68,17 @@ export default function REMSleepCalculatorPage() {
   const webAppSchema = buildWebAppSchema(
     "REM Sleep Calculator",
     "https://sleepschedule.in/rem-sleep-calculator",
-    "Calculate how much REM sleep you get based on your total hours of sleep, broken down by sleep cycle."
+    "Calculate how much REM sleep you get based on your total hours of sleep, broken down by sleep cycle.",
+    { dateModified: "2026-08-17" }
   );
   return (
     <>
       <StructuredData data={faqSchema} />
       <StructuredData data={webAppSchema} />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "https://sleepschedule.in" },
+        { name: "REM Sleep Calculator", url: "https://sleepschedule.in/rem-sleep-calculator" },
+      ]} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -73,7 +88,11 @@ export default function REMSleepCalculatorPage() {
             Enter how many hours you sleep to see how much REM sleep you get, broken down cycle by cycle.
           </p>
           <p className="text-xs text-slate-500 mt-3">
-            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
+            Written by{" "}
+            <a href="/about" className="underline hover:text-slate-400 transition-colors">
+              Siddhant Pandagle
+            </a>
+            {" "}&middot; <time dateTime="2026-08-17">Last reviewed: August 2026</time>
           </p>
         </div>
 
@@ -84,23 +103,23 @@ export default function REMSleepCalculatorPage() {
         <section className="mb-12 grid md:grid-cols-3 gap-6">
           {[
             {
-              icon: "🧠",
+              Icon: Brain,
               title: "Memory & Learning",
               body: "REM sleep consolidates memories and skills learned during the day. Missing REM impairs recall and learning speed.",
             },
             {
-              icon: "📈",
+              Icon: TrendingUp,
               title: "Increases Per Cycle",
               body: "Each cycle has more REM than the last. Cycle 1 has ~10 min; cycles 4–5 have up to 50 min. Cutting sleep short loses the most REM.",
             },
             {
-              icon: "😴",
+              Icon: Moon,
               title: "20–25% of Sleep",
               body: "Healthy adults spend 20–25% of total sleep in REM. At 8 hours, that's 96–120 minutes of REM per night.",
             },
-          ].map(({ icon, title, body }) => (
+          ].map(({ Icon, title, body }) => (
             <div key={title} className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <div className="text-3xl mb-3">{icon}</div>
+              <div className="mb-3 text-indigo-400"><Icon className="w-7 h-7" aria-hidden="true" /></div>
               <h3 className="font-semibold text-white mb-2">{title}</h3>
               <p className="text-sm text-slate-400">{body}</p>
             </div>
@@ -112,13 +131,19 @@ export default function REMSleepCalculatorPage() {
           <p className="text-slate-400 leading-relaxed mb-4">
             This calculator applies polysomnography-based percentages to your total sleep time. REM sleep is not evenly distributed — it concentrates in later cycles. The first 90-minute cycle produces roughly 10 minutes of REM; cycles 4 and 5 produce 45–60 minutes each. The calculator weights these proportions across the number of cycles your sleep duration covers.
           </p>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Across a full night, most adults move through four to six of these 90-minute cycles. Cycle one typically produces only 5–10 minutes of REM, because the body prioritizes deep, slow-wave sleep early on for physical recovery. From there, the balance shifts with every cycle: slow-wave sleep gets shorter and REM periods get longer, so the cycles in the second half of the night contribute the bulk of your total REM time. This is why REM is disproportionately lost when sleep is cut short from the end — skipping the final 90 minutes removes far more REM than skipping the first 90 minutes, even though both are the same length.
+          </p>
           <p className="text-slate-400 leading-relaxed">
             The 20–25% figure comes from population-level polysomnography studies. Your actual REM may vary by 5–10% based on age, alcohol intake, medications, and individual sleep architecture. Use this as a directional estimate, not a clinical measurement.
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">REM benchmarks by age</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">Is your REM sleep normal for your age?</h2>
+          <p className="text-slate-400 leading-relaxed mb-6">
+            REM need isn&apos;t a single fixed number — it shifts across the lifespan alongside total sleep need. Per CDC and AASM guidance, REM is best understood as a share of total sleep rather than a fixed minute count, which is why the ranges below scale to age-appropriate sleep duration. Teenagers and young adults tend to sit toward the higher end of the 20–25% range, while adults 65 and older typically see REM percentage settle lower even when total sleep duration holds steady — a normal age-related shift, not on its own a sign of poor sleep quality. Compare your calculated REM percentage above to your age group below before assuming something is wrong.
+          </p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead>
@@ -167,7 +192,11 @@ export default function REMSleepCalculatorPage() {
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 p-5">
               <p className="font-semibold text-white mb-1">REM well above target</p>
-              <p className="text-sm text-slate-400">REM above 30% can indicate REM rebound — your brain compensating for prior REM deprivation. This is normal during recovery. It typically normalizes within 1–2 weeks of consistent adequate sleep.</p>
+              <p className="text-sm text-slate-400">REM well above your typical range can indicate REM rebound — your brain compensating for prior REM deprivation, often after a stretch of short or disrupted sleep. This is normal during recovery and tends to settle back down once you return to a consistent, adequate sleep schedule.</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <p className="font-semibold text-white mb-1">Not sure if it&apos;s normal for you</p>
+              <p className="text-sm text-slate-400">The 20–25% target applies to most working-age adults. If you&apos;re a teenager, a young adult, or over 65, check the age-specific range in the table above — REM percentage that looks &quot;low&quot; against the general adult figure can be entirely normal for your age group.</p>
             </div>
           </div>
         </section>
@@ -185,8 +214,11 @@ export default function REMSleepCalculatorPage() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            This calculator uses population-average REM percentages derived from polysomnography studies. It does not account for individual variation in sleep architecture, sleep disorders (apnea, insomnia, narcolepsy), medications (SSRIs, benzodiazepines, beta-blockers all suppress REM), or night-to-night variability. Consumer wearables also estimate sleep stages from movement and heart-rate signals, not brain waves, so they&apos;re a rough proxy at best — not a substitute for a clinical measurement. If you suspect a sleep disorder, consult a sleep medicine physician — this tool cannot diagnose one.
+          </p>
           <p className="text-slate-400 leading-relaxed">
-            This calculator uses population-average REM percentages derived from polysomnography studies. It does not account for individual variation in sleep architecture, sleep disorders (apnea, insomnia, narcolepsy), medications (SSRIs, benzodiazepines, beta-blockers all suppress REM), or night-to-night variability. Consumer wearables estimate REM at 70–80% accuracy versus clinical polysomnography. If you suspect a sleep disorder, consult a sleep medicine physician — this tool cannot diagnose one.
+            In short: this is an approximation, not a diagnosis. Polysomnography — an overnight, in-lab or in-home sleep study that records brain waves, eye movement, and muscle activity — remains the only precise way to measure your actual REM stages. Treat the numbers here as a starting point for noticing patterns, not as a substitute for a real sleep study if you have persistent concerns.
           </p>
         </section>
 
@@ -210,11 +242,15 @@ export default function REMSleepCalculatorPage() {
                 q: "Does alcohol affect REM sleep?",
                 a: "Yes. Alcohol suppresses REM in the first half of the night and causes REM rebound in the second half — leading to vivid dreams and fragmented sleep. Even moderate drinking reduces total REM time.",
               },
+              {
+                q: "Is my REM sleep normal for my age?",
+                a: "It depends on your age group. Per CDC and AASM guidance, healthy adults spend roughly 20–25% of total sleep in REM; teenagers and young adults tend toward the higher end of that range, while adults 65 and older typically see REM settle to around 15–20%. Compare your calculated REM percentage to the age benchmark table above rather than a single fixed number.",
+              },
             ].map(({ q, a }) => (
               <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
                 <summary className="font-medium text-white list-none flex justify-between items-center p-5">
                   {q}
-                  <span className="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+                  <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
                 <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
               </details>
@@ -229,12 +265,8 @@ export default function REMSleepCalculatorPage() {
               CDC — Sleep and Sleep Disorders
             </a>
             {" "}·{" "}
-            <a href="https://www.aasm.org/resources/clinicalguidelines/adult-sleep.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+            <a href="https://aasm.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
               American Academy of Sleep Medicine (AASM)
-            </a>
-            {" "}·{" "}
-            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
-              National Sleep Foundation
             </a>
           </p>
         </section>

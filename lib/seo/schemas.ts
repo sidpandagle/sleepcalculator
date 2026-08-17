@@ -2,6 +2,7 @@ import type { Post } from "@/lib/supabase/types";
 
 const SITE_URL = "https://sleepschedule.in";
 const SITE_NAME = "Sleep Schedule";
+const SITE_AUTHOR = "Siddhant Pandagle";
 
 export function buildWebSiteSchema() {
   return {
@@ -32,7 +33,12 @@ export function buildOrganizationSchema() {
   };
 }
 
-export function buildWebAppSchema(name: string, url: string, description: string) {
+export function buildWebAppSchema(
+  name: string,
+  url: string,
+  description: string,
+  options?: { dateModified?: string }
+) {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -41,10 +47,16 @@ export function buildWebAppSchema(name: string, url: string, description: string
     description,
     applicationCategory: "HealthApplication",
     operatingSystem: "Web",
+    ...(options?.dateModified && { dateModified: options.dateModified }),
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+    },
+    author: {
+      "@type": "Person",
+      name: SITE_AUTHOR,
+      url: `${SITE_URL}/about`,
     },
     publisher: {
       "@type": "Organization",
@@ -67,9 +79,9 @@ export function buildArticleSchema(post: Post) {
       image: { "@type": "ImageObject", url: post.cover_image, width: 1200, height: 630 },
     }),
     author: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
+      "@type": "Person",
+      name: SITE_AUTHOR,
+      url: `${SITE_URL}/about`,
     },
     publisher: {
       "@type": "Organization",
@@ -86,6 +98,17 @@ export function buildArticleSchema(post: Post) {
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${post.slug}`,
     },
+  };
+}
+
+export function buildPersonSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE_AUTHOR,
+    url: `${SITE_URL}/about`,
+    jobTitle: "Software Developer",
+    knowsAbout: ["Sleep science", "Sleep cycles", "Circadian rhythm"],
   };
 }
 

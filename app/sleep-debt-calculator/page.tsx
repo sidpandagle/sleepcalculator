@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import SleepDebtTab from "@/components/calculator/SleepDebtTab";
 import StructuredData from "@/components/seo/StructuredData";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
@@ -40,7 +43,7 @@ const faqSchema = {
       name: "How much sleep debt is dangerous?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Even one night of 6 hours instead of 8 measurably impairs cognition equal to 24 hours without sleep. Accumulating more than 10 hours of sleep debt significantly impairs physical and mental performance.",
+        text: "Cutting a couple of hours short of your target measurably impairs alertness and reaction time, even if you feel fine. Debt is cumulative — the more you build up without recovery, the more physical and mental performance suffers, per CDC guidance on chronic sleep deprivation.",
       },
     },
     {
@@ -58,12 +61,17 @@ export default function SleepDebtCalculatorPage() {
   const webAppSchema = buildWebAppSchema(
     "Sleep Debt Calculator",
     "https://sleepschedule.in/sleep-debt-calculator",
-    "Calculate your sleep debt based on last night's sleep and your age. See how many hours short you are of CDC recommendations."
+    "Calculate your sleep debt based on last night's sleep and your age. See how many hours short you are of CDC recommendations.",
+    { dateModified: "2026-08-17" }
   );
   return (
     <>
       <StructuredData data={faqSchema} />
       <StructuredData data={webAppSchema} />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "https://sleepschedule.in" },
+        { name: "Sleep Debt Calculator", url: "https://sleepschedule.in/sleep-debt-calculator" },
+      ]} />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -73,7 +81,11 @@ export default function SleepDebtCalculatorPage() {
             Enter how many hours you slept and your age to see your sleep debt versus CDC recommendations.
           </p>
           <p className="text-xs text-slate-500 mt-3">
-            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
+            Written by{" "}
+            <a href="/about" className="underline hover:text-slate-400 transition-colors">
+              Siddhant Pandagle
+            </a>
+            {" "}&middot; <time dateTime="2026-08-17">Last reviewed: August 2026</time>
           </p>
         </div>
 
@@ -123,13 +135,36 @@ export default function SleepDebtCalculatorPage() {
           <p className="text-slate-400 leading-relaxed mb-4">
             The calculator compares your actual sleep hours against the CDC-recommended minimum for your age group. The deficit shown is a single-night estimate. For a 7-day rolling total, enter each night&apos;s sleep and sum the deficits — a week of 6-hour nights when you need 8 accumulates 14 hours of debt.
           </p>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-slate-400 leading-relaxed mb-4">
             Sleep need is used as the midpoint of the CDC range for your age (e.g., 8 hours for adults 18–64, where the range is 7–9). If you know your personal sleep need differs from the midpoint, adjust accordingly.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Treat the single-night number as a starting point rather than the whole picture. The most useful way to read your result is in the context of the week that led up to it: a 2-hour deficit after a run of short nights means something different than a 2-hour deficit after weeks of consistent, adequate sleep, even though the calculator shows the same figure for both.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">How sleep debt accumulates</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Sleep debt is not something a single bad night creates in isolation — it is cumulative. Each night you sleep less than your body&apos;s need, the shortfall carries forward and adds to whatever deficit already exists. Sleep two hours short on Monday and you carry a two-hour debt into Tuesday. Repeat that pattern through the work week and the deficit does not reset each morning — it stacks, night after night, into a much larger total than any single night suggests.
+          </p>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            This is different from ordinary tiredness. The{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+              CDC
+            </a>{" "}
+            treats insufficient sleep as a chronic public health issue precisely because its effects compound over days and weeks rather than washing out overnight. A person who consistently sleeps 6 hours instead of 8 does not simply feel the effects of &quot;one short night&quot; on repeat — each additional night of shortfall builds on the unresolved debt from before, so the cumulative impact on alertness, mood, and physical health grows faster than the raw number of missed hours would imply.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            That compounding is also why sleep debt can feel deceptively manageable in the moment. Caffeine, adrenaline, and routine can mask the accumulating deficit for a while, but the underlying debt does not disappear — it continues to build in the background until enough recovery sleep is banked to pay it down.
           </p>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">Understanding your sleep debt score</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            The number your result shows is only useful once it&apos;s put in context. A one-hour shortfall after a single late night carries a very different meaning than the same one-hour figure after two weeks of accumulating debt. Use the ranges below as a rough guide to what your current deficit typically means, not as a precise medical threshold.
+          </p>
           <div className="space-y-4">
             <div className="rounded-xl border border-white/10 bg-white/5 p-5">
               <p className="font-semibold text-white mb-1">0–1 hour deficit</p>
@@ -137,7 +172,7 @@ export default function SleepDebtCalculatorPage() {
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 p-5">
               <p className="font-semibold text-white mb-1">1–3 hours deficit</p>
-              <p className="text-sm text-slate-400">Measurable impairment in reaction time, working memory, and emotional regulation. Research from the University of Pennsylvania shows this level of debt accumulates to 24-hour deprivation equivalence within 10 days if sustained.</p>
+              <p className="text-sm text-slate-400">Measurable impairment in reaction time, working memory, and emotional regulation. If this level of shortfall repeats night after night, the deficit keeps stacking rather than resetting, so the cumulative effect grows the longer the pattern continues.</p>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 p-5">
               <p className="font-semibold text-white mb-1">3+ hours deficit</p>
@@ -149,17 +184,36 @@ export default function SleepDebtCalculatorPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">How to recover from sleep debt</h2>
           <p className="text-slate-400 leading-relaxed mb-4">
-            Add 30–60 minutes per night above your normal sleep need until the deficit is repaid. Going to bed earlier is more effective than sleeping later — it protects your wake time anchor, which stabilizes your circadian rhythm. Avoid attempting to recover all debt in one session (e.g., sleeping 12 hours) — this overshoots and disrupts your clock without meaningfully faster recovery.
+            Because sleep debt builds gradually, it also has to come down gradually. Add 30–60 minutes per night above your normal sleep need until the deficit is repaid, rather than trying to erase it in one long session. Going to bed earlier is generally more effective than sleeping in later, since it protects your regular wake time and keeps your circadian rhythm — your body&apos;s internal clock — from drifting.
+          </p>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            A consistent sleep schedule is the foundation of repayment. Waking up and going to bed at roughly the same time every day, including weekends, helps your body settle into a stable rhythm instead of lurching between short weekday nights and long weekend catch-up sleep. That lurching pattern — sometimes called &quot;social jet lag&quot; — is itself disruptive.
+          </p>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Avoid the trap of trying to repay a large debt in a single marathon night of sleep. Sleeping 11 or 12 hours to make up for a week of short nights overshoots what your body can use in one session, disrupts your sleep architecture, and can leave you groggier rather than restored. According to the{" "}
+            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+              National Sleep Foundation
+            </a>
+            , sleeping in on weekends can help offset some of the debt built up during the week, but it only partially compensates — it does not fully reverse the cumulative effects of repeated short nights, and it does not fix the underlying schedule that created the debt in the first place.
           </p>
           <p className="text-slate-400 leading-relaxed">
-            Short-term debt (2–5 hours total) resolves in 1–3 nights of adequate sleep. Chronic debt accumulated over weeks requires 2–3 weeks of consistent adequate sleep to fully restore baseline cognitive performance, per research published in <em>Sleep</em>.
+            Short-term debt (2–5 hours total) generally resolves within a few nights of adequate, consistent sleep. Debt accumulated over weeks takes longer and responds best to steady, moderate extra sleep sustained over time rather than any single large correction.
           </p>
         </section>
+
+        <div className="rounded-xl border border-white/10 bg-white/5 p-6 mb-12">
+          <p className="text-slate-300 leading-relaxed">
+            Not sure what your actual target should be? Sleep need varies by age, so your personal baseline may differ from the general CDC range used here.{" "}
+            <Link href="/sleep-duration-calculator" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+              Check age-based sleep recommendations →
+            </Link>
+          </p>
+        </div>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
           <p className="text-slate-400 leading-relaxed">
-            This calculator uses a single-night snapshot. It does not account for cumulative weekly debt, individual variation in sleep need, sleep quality (fragmented sleep of 8 hours differs from consolidated 8 hours), or pre-existing sleep disorders. The CDC midpoint is used as the reference — your personal need may be higher or lower within the published range. This tool does not diagnose sleep deprivation or any health condition.
+            This calculator estimates your sleep debt against the CDC-recommended range for your age group, not your personal ideal — some people genuinely need more or less sleep than the general guideline. It also uses a single-night snapshot: it does not automatically track cumulative weekly debt, sleep quality (fragmented sleep of 8 hours differs from consolidated 8 hours), or pre-existing sleep disorders. The CDC midpoint is used as the reference point; your own need may sit anywhere within the published range. This tool does not diagnose sleep deprivation or any health condition — if you consistently struggle to get adequate sleep, consult a healthcare provider.
           </p>
         </section>
 
@@ -177,7 +231,7 @@ export default function SleepDebtCalculatorPage() {
               },
               {
                 q: "How much sleep debt is dangerous?",
-                a: "Even one night of 6 hours instead of 8 measurably impairs cognition equal to 24 hours without sleep. Accumulating more than 10 hours of sleep debt significantly impairs physical and mental performance.",
+                a: "Cutting a couple of hours short of your target measurably impairs alertness and reaction time, even if you feel fine. Debt is cumulative — the more you build up without recovery, the more physical and mental performance suffers, per CDC guidance on chronic sleep deprivation.",
               },
               {
                 q: "How do I pay back sleep debt?",
@@ -187,7 +241,7 @@ export default function SleepDebtCalculatorPage() {
               <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
                 <summary className="font-medium text-white list-none flex justify-between items-center p-5">
                   {q}
-                  <span className="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+                  <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
                 <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
               </details>

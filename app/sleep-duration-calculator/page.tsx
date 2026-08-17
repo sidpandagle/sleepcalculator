@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { ChevronDown, Link2 } from "lucide-react";
 import DurationTab from "@/components/calculator/DurationTab";
 import StructuredData from "@/components/seo/StructuredData";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { buildWebAppSchema } from "@/lib/seo/schemas";
 
 export const metadata: Metadata = {
@@ -59,12 +61,19 @@ export default function SleepDurationCalculatorPage() {
   const webAppSchema = buildWebAppSchema(
     "Sleep Duration Calculator",
     "https://sleepschedule.in/sleep-duration-calculator",
-    "Find out exactly how much sleep you need based on your age. Uses CDC sleep recommendations for children, teenagers, adults, and older adults."
+    "Find out exactly how much sleep you need based on your age. Uses CDC sleep recommendations for children, teenagers, adults, and older adults.",
+    { dateModified: "2026-08-17" }
   );
   return (
     <>
       <StructuredData data={faqSchema} />
       <StructuredData data={webAppSchema} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://sleepschedule.in" },
+          { name: "Sleep Duration Calculator", url: "https://sleepschedule.in/sleep-duration-calculator" },
+        ]}
+      />
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
@@ -75,7 +84,11 @@ export default function SleepDurationCalculatorPage() {
             sleep duration for your age group — and whether your current sleep hits the target.
           </p>
           <p className="text-xs text-slate-500 mt-3">
-            <time dateTime="2026-06-27">Last reviewed: June 2026</time>
+            Written by{" "}
+            <a href="/about" className="underline hover:text-slate-400 transition-colors">
+              Siddhant Pandagle
+            </a>
+            {" "}&middot; <time dateTime="2026-08-17">Last reviewed: August 2026</time>
           </p>
         </div>
 
@@ -128,12 +141,17 @@ export default function SleepDurationCalculatorPage() {
           <p className="text-slate-400 leading-relaxed">
             Adults aged 18–64 are the most undersleeping demographic: the{" "}
             <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">CDC</a>{" "}
-            estimates 35% of U.S. adults regularly fall short of 7 hours. For reference, sleeping 6 hours per night for 10 days produces cognitive impairment equivalent to 24 hours of total sleep deprivation, per University of Pennsylvania research.
+            estimates roughly 1 in 3 U.S. adults regularly fall short of 7 hours — the low end of the recommended range, and a pattern linked to higher risk of chronic health conditions over time.
           </p>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">Why sleep needs change with age</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Look at the{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">CDC</a>{" "}
+            table above and a clear pattern emerges: recommended sleep duration is highest at birth and declines, in broad steps, across the lifespan — from newborns needing far more than adults, through the school-age and teenage years, down to the 7–9 hour range most adults settle into, and the slightly narrower 7–8 hour range typical of older adults. This isn&apos;t arbitrary. It tracks the underlying biology of what sleep is doing at each life stage.
+          </p>
           <p className="text-slate-400 leading-relaxed mb-4">
             Sleep requirements are highest in early life because sleep drives brain development, myelination, and growth hormone secretion. School-age children consolidate learning during slow-wave sleep — skimping on sleep measurably impairs academic performance and emotional regulation.
           </p>
@@ -143,7 +161,23 @@ export default function SleepDurationCalculatorPage() {
             advocates for middle and high school start times no earlier than 8:30 AM.
           </p>
           <p className="text-slate-400 leading-relaxed">
-            Older adults (65+) need slightly less sleep (7–8 hours) and experience structural changes: less deep slow-wave sleep, more fragmentation, and earlier natural wake times. This is normal aging, not insomnia — though the two often coexist.
+            Older adults (65+) need slightly less sleep (7–8 hours) and experience structural changes: less deep slow-wave sleep, more fragmentation, and earlier natural wake times. This is normal aging, not insomnia — though the two often coexist. Across the whole lifespan, the general trend the{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">CDC</a>{" "}
+            guidance reflects is one of gradually declining total sleep need as the brain finishes the heavy construction work of childhood and adolescence and shifts into maintenance mode in adulthood.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Individual variation within the guidelines</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            The ranges published by the{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">CDC</a>{" "}
+            and the{" "}
+            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">National Sleep Foundation (NSF)</a>{" "}
+            are population guidelines, not a strict personal prescription. They describe what&apos;s appropriate for most healthy people in an age group — not a number that applies identically to every individual within it. Some healthy adults consistently function well at the low end of the 7–9 hour range; others genuinely need the high end to feel rested and perform well. Genetics, activity level, general health, and even how demanding a given day was all shift where an individual sits within the range.
+          </p>
+          <p className="text-slate-400 leading-relaxed">
+            Duration is also only one part of the picture. Consistency — going to bed and waking at similar times most days — and sleep quality — falling asleep reasonably quickly and staying asleep with minimal disruption — matter alongside raw hours. Someone who sleeps 7.5 hours on a stable schedule with few awakenings is often better rested than someone who sleeps 8.5 fragmented hours at irregular times. Use the range this calculator shows as a starting reference point, then pay attention to how you actually feel and function.
           </p>
         </section>
 
@@ -166,9 +200,20 @@ export default function SleepDurationCalculatorPage() {
         </section>
 
         <section className="mb-12">
+          <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-6 flex items-start gap-4">
+            <Link2 className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
+            <div>
+              <p className="text-sm font-semibold text-indigo-300 mb-1">Related tool</p>
+              <p className="text-slate-300 text-sm mb-3">Not hitting your target range consistently? See how much sleep debt you&apos;ve built up over the past week and what it takes to pay it back.</p>
+              <a href="/sleep-debt-calculator" className="text-sm text-indigo-400 font-medium hover:text-indigo-300 transition-colors">Sleep Debt Calculator →</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
           <p className="text-slate-400 leading-relaxed">
-            CDC recommendations are population-level guidelines, not individually calibrated targets. Your personal sleep need may fall outside the typical range — some adults function well on 6 hours; others need 9. Sleep quality, sleep disorder presence, and accumulated sleep debt all affect how refreshed you feel at any given duration. This tool provides a reference point, not a diagnosis.
+            This tool estimates a target sleep range for your age group — it is not a diagnosis and not a substitute for medical advice. CDC recommendations are population-level guidelines, not individually calibrated targets: your personal sleep need may reasonably fall outside the typical range. Sleep quality, sleep disorder presence, and accumulated sleep debt all affect how refreshed you feel at any given duration. If you consistently struggle to meet these ranges despite giving yourself adequate opportunity to sleep — enough time in bed, a reasonably dark and quiet environment, no late caffeine — that pattern may warrant talking to a doctor rather than just trying to sleep more.
           </p>
         </section>
 
@@ -196,7 +241,7 @@ export default function SleepDurationCalculatorPage() {
               <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
                 <summary className="font-medium text-white list-none flex justify-between items-center p-5">
                   {q}
-                  <span className="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+                  <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
                 <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
               </details>

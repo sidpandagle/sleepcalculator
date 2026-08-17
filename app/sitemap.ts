@@ -12,14 +12,14 @@ import {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticUrls: MetadataRoute.Sitemap = [
-    { url: "https://sleepschedule.in",                            lastModified: new Date("2026-06-27"), changeFrequency: "weekly",  priority: 1   },
-    { url: "https://sleepschedule.in/nap-calculator",             lastModified: new Date("2026-06-27"), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sleepschedule.in/sleep-duration-calculator",  lastModified: new Date("2026-06-27"), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sleepschedule.in/sleep-debt-calculator",      lastModified: new Date("2026-06-27"), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sleepschedule.in/rem-sleep-calculator",       lastModified: new Date("2026-06-27"), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sleepschedule.in/pregnancy-sleep-calculator", lastModified: new Date("2026-06-27"), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sleepschedule.in/baby-sleep-calculator",      lastModified: new Date("2026-06-27"), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sleepschedule.in/about",                      lastModified: new Date("2026-06-27"), changeFrequency: "monthly", priority: 0.6 },
+    { url: "https://sleepschedule.in",                            lastModified: new Date("2026-08-17"), changeFrequency: "weekly",  priority: 1   },
+    { url: "https://sleepschedule.in/nap-calculator",             lastModified: new Date("2026-08-17"), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://sleepschedule.in/sleep-duration-calculator",  lastModified: new Date("2026-08-17"), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://sleepschedule.in/sleep-debt-calculator",      lastModified: new Date("2026-08-17"), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://sleepschedule.in/rem-sleep-calculator",       lastModified: new Date("2026-08-17"), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://sleepschedule.in/pregnancy-sleep-calculator", lastModified: new Date("2026-08-17"), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://sleepschedule.in/baby-sleep-calculator",      lastModified: new Date("2026-08-17"), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://sleepschedule.in/about",                      lastModified: new Date("2026-08-17"), changeFrequency: "monthly", priority: 0.6 },
     { url: "https://sleepschedule.in/blog",                       lastModified: new Date("2026-06-27"), changeFrequency: "weekly",  priority: 0.7 },
     { url: "https://sleepschedule.in/terms",                      lastModified: new Date("2026-06-27"), changeFrequency: "yearly",  priority: 0.4 },
     { url: "https://sleepschedule.in/contact",                    lastModified: new Date("2026-06-27"), changeFrequency: "yearly",  priority: 0.4 },
