@@ -19,7 +19,7 @@ export default function ResultCard({ time, cycles, hours, recommended }: ResultC
     <div
       className={`relative overflow-hidden rounded-2xl px-4 py-3.5 transition-all ${
         recommended
-          ? "bg-ember/10 border border-ember/40"
+          ? "bg-ember/10 border border-ember/40 pt-8"
           : "bg-dusk border border-moon/9 hover:border-moon/20"
       }`}
     >
