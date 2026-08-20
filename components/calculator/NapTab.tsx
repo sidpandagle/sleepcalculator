@@ -28,50 +28,48 @@ export default function NapTab() {
   const results = calculateNapTimes(napStart);
 
   return (
-    <div className="space-y-6">
+    <div>
       <fieldset className="border-0 p-0 m-0 w-full min-w-0">
-        <legend className="block text-sm font-medium text-slate-300 mb-3">
-          I want to start napping at:
+        <legend className="block text-[12.5px] tracking-widest uppercase text-mist/80 mb-1 text-center w-full">
+          I want to start napping at
         </legend>
         <TimePicker value={napStart} onChange={setNapStart} presets={NAP_PRESETS} />
       </fieldset>
 
-      <div className="space-y-3">
+      <div className="flex flex-col gap-2.5 mt-6">
         {results.map((r) => (
           <div
             key={r.label}
-            className={`rounded-xl border p-4 transition-all ${
+            className={`rounded-[18px] border p-4 flex items-center justify-between gap-4 transition-all ${
               r.warning
                 ? "border-amber-500/30 bg-amber-500/5"
-                : "border-indigo-500/30 bg-indigo-500/10"
+                : "border-ember/30 bg-ember/10"
             }`}
           >
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="font-serif text-[32px] leading-none text-linen w-[58px] shrink-0">{r.minutes}</div>
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-lg">{NAP_ICONS[r.label]}</span>
-                  <span className="font-semibold text-white">{r.label}</span>
-                  <span className="text-xs text-slate-400 bg-white/10 px-2 py-0.5 rounded-full">
-                    {r.minutes} min
-                  </span>
+                <div className="flex items-center gap-2">
+                  <span>{NAP_ICONS[r.label]}</span>
+                  <span className="font-semibold text-[15.5px] text-linen">{r.label}</span>
                 </div>
-                <p className="text-sm text-slate-400">{r.benefit}</p>
+                <p className="text-[13px] text-mist mt-0.5">{r.benefit}</p>
                 {r.warning && (
                   <p className="text-xs text-amber-400 mt-1">⚠ {r.warning}</p>
                 )}
               </div>
-              <div className="text-right shrink-0">
-                <div className="text-xs text-slate-400 mb-0.5">Wake up at</div>
-                <div className="text-2xl font-bold text-white tabular-nums">
-                  {display12h(r.wakeTime)}
-                </div>
+            </div>
+            <div className="text-right shrink-0">
+              <div className="text-[11px] uppercase tracking-wide text-mist/70">Wake at</div>
+              <div className="text-[19px] font-semibold text-linen tabular-nums mt-0.5 whitespace-nowrap">
+                {display12h(r.wakeTime)}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      <p className="text-xs text-slate-500">
+      <p className="text-xs text-mist/70 leading-relaxed mt-4">
         Power naps (10–20 min) keep you in light sleep — no grogginess on waking. Full cycle naps (90 min) complete all sleep stages including REM. Avoid 30–60 min naps if you need to be alert immediately after.
       </p>
     </div>

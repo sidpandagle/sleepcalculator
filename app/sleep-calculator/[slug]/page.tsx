@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { generateAllWakeUpTimes, slugToHhmm, getNeighborSlugs } from "@/lib/programmatic";
 import { calculateBedtimes } from "@/lib/sleep-engine";
 import { display12h } from "@/lib/time-utils";
@@ -81,17 +82,17 @@ export default async function WakeUpPage({ params }: { params: Promise<{ slug: s
         { name: "Sleep Calculator", url: "https://sleepschedule.in" },
         { name: `Wake up at ${display}`, url: `https://sleepschedule.in/sleep-calculator/${slug}` },
       ]} />
-      <div className="max-w-3xl mx-auto px-4 py-12">
-        <nav className="text-sm text-slate-400 mb-8">
-          <Link href="/" className="hover:text-white transition-colors">Sleep Calculator</Link>
+      <div className="max-w-3xl mx-auto px-4 sm:px-8 pt-16 pb-16">
+        <nav className="text-sm text-mist mb-8">
+          <Link href="/" className="hover:text-linen transition-colors">Sleep Calculator</Link>
           <span className="mx-2">›</span>
-          <span className="text-slate-300">Wake up at {display}</span>
+          <span className="text-mist">Wake up at {display}</span>
         </nav>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 leading-tight">
+        <h1 className="font-serif font-normal text-4xl md:text-5xl text-linen mb-3 leading-tight">
           What time should I go to sleep to wake up at {display}?
         </h1>
-        <p className="text-slate-400 mb-10 text-lg">
+        <p className="text-mist mb-10 text-lg">
           Based on 90-minute sleep cycles. Go to bed at one of these times to wake up at {display} feeling refreshed.
         </p>
 
@@ -101,19 +102,19 @@ export default async function WakeUpPage({ params }: { params: Promise<{ slug: s
           ))}
         </div>
 
-        <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-5 mb-12">
-          <p className="text-sm font-semibold text-indigo-300 mb-1">Best bedtimes for {display} wake-up</p>
-          <p className="text-white font-bold text-lg">
+        <div className="rounded-xl border border-ember/30 bg-ember/10 p-5 mb-12">
+          <p className="text-sm font-semibold text-ember-light mb-1">Best bedtimes for {display} wake-up</p>
+          <p className="text-linen font-bold text-lg">
             {recommended.map((b) => display12h(b.time)).join(" or ")}
           </p>
-          <p className="text-slate-400 text-sm mt-1">5–6 sleep cycles · 7.5–9 hours · CDC recommended for adults</p>
+          <p className="text-mist text-sm mt-1">5–6 sleep cycles · 7.5–9 hours · CDC recommended for adults</p>
         </div>
 
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-4">How this is calculated</h2>
-          <div className="space-y-3 text-slate-400 text-sm leading-relaxed">
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">How this is calculated</h2>
+          <div className="space-y-3 text-mist text-sm leading-relaxed">
             <p>
-              Your body moves through 90-minute sleep cycles — each one contains light sleep, deep sleep, and REM. Waking up at the <strong className="text-slate-200">end</strong> of a cycle means less grogginess.
+              Your body moves through 90-minute sleep cycles — each one contains light sleep, deep sleep, and REM. Waking up at the <strong className="text-linen">end</strong> of a cycle means less grogginess.
             </p>
             <p>
               This calculator works backwards from your {display} wake time. It subtracts complete 90-minute cycles, then adds a 15-minute fall-asleep buffer so your timing is accurate from when you actually fall asleep.
@@ -125,11 +126,11 @@ export default async function WakeUpPage({ params }: { params: Promise<{ slug: s
         </section>
 
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-4">All bedtimes if you wake at {display}</h2>
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">All bedtimes if you wake at {display}</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead>
-                <tr className="border-b border-white/10 text-slate-400">
+                <tr className="border-b border-moon/8 text-mist">
                   <th className="pb-2 pr-6 font-medium">Bedtime</th>
                   <th className="pb-2 pr-6 font-medium">Sleep cycles</th>
                   <th className="pb-2 pr-6 font-medium">Hours of sleep</th>
@@ -138,14 +139,14 @@ export default async function WakeUpPage({ params }: { params: Promise<{ slug: s
               </thead>
               <tbody>
                 {[...bedtimes].reverse().map((b) => (
-                  <tr key={b.cycles} className="border-b border-white/5 text-slate-300">
-                    <td className="py-2.5 pr-6 font-semibold text-white">{display12h(b.time)}</td>
+                  <tr key={b.cycles} className="border-b border-moon/5 text-mist">
+                    <td className="py-2.5 pr-6 font-semibold text-linen">{display12h(b.time)}</td>
                     <td className="py-2.5 pr-6">{b.cycles}</td>
                     <td className="py-2.5 pr-6">{b.hours}h</td>
                     <td className="py-2.5">
                       {b.recommended
-                        ? <span className="text-indigo-400 font-medium">Recommended</span>
-                        : <span className="text-slate-500">Minimum</span>}
+                        ? <span className="text-ember font-medium">Recommended</span>
+                        : <span className="text-mist/70">Minimum</span>}
                     </td>
                   </tr>
                 ))}
@@ -155,7 +156,7 @@ export default async function WakeUpPage({ params }: { params: Promise<{ slug: s
         </section>
 
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-4">Frequently asked questions</h2>
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">Frequently asked questions</h2>
           <div className="space-y-3">
             {[
               {
@@ -171,33 +172,33 @@ export default async function WakeUpPage({ params }: { params: Promise<{ slug: s
                 a: "The average person takes 10–20 minutes to fall asleep. Adding 15 minutes ensures your cycles are timed from when you actually fall asleep, not just when you get into bed.",
               },
             ].map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
-                <summary className="font-medium text-white list-none flex justify-between items-center p-5">
+              <details key={q} className="group rounded-[18px] border border-moon/9 bg-dusk cursor-pointer">
+                <summary className="font-medium text-linen list-none flex justify-between items-center p-5">
                   {q}
-                  <span className="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+                  <ChevronDown className="w-4 h-4 text-mist group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
+                <p className="px-5 pb-5 text-sm text-mist leading-relaxed">{a}</p>
               </details>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-bold text-white mb-4">Similar wake-up times</h2>
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">Similar wake-up times</h2>
           <div className="flex flex-wrap gap-2">
             {neighbors.map(({ slug: s, display: d }) => (
               <Link
                 key={s}
                 href={`/sleep-calculator/${s}`}
-                className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+                className="px-3.5 py-1.5 rounded-full border border-moon/8 bg-dusk text-sm text-mist hover:text-linen hover:bg-moon/5 transition-colors"
               >
                 Wake up at {d}
               </Link>
             ))}
           </div>
-          <p className="mt-6 text-sm text-slate-500">
+          <p className="mt-6 text-sm text-mist/70">
             Want to calculate from a different time?{" "}
-            <Link href="/" className="text-indigo-400 hover:text-indigo-300 transition-colors">
+            <Link href="/" className="text-ember hover:text-ember-light transition-colors">
               Use the full sleep calculator →
             </Link>
           </p>

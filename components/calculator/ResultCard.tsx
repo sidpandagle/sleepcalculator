@@ -1,3 +1,5 @@
+import SleepWave from "@/components/ui/SleepWave";
+
 function formatAmPm(time: string) {
   const [h, m] = time.split(":").map(Number);
   const period = h < 12 ? "AM" : "PM";
@@ -15,21 +17,29 @@ interface ResultCardProps {
 export default function ResultCard({ time, cycles, hours, recommended }: ResultCardProps) {
   return (
     <div
-      className={`relative rounded-xl p-4 border transition-all ${
+      className={`relative overflow-hidden rounded-2xl px-4 py-3.5 transition-all ${
         recommended
-          ? "border-indigo-500 bg-indigo-500/10 ring-1 ring-indigo-500/30"
-          : "border-white/10 bg-white/5 hover:bg-white/10"
+          ? "bg-ember/10 border border-ember/40"
+          : "bg-dusk border border-moon/9 hover:border-moon/20"
       }`}
     >
       {recommended && (
-        <span className="absolute -top-2.5 left-3 text-xs font-semibold bg-indigo-600 text-white px-2 py-0.5 rounded-full">
+        <span className="absolute top-2 right-2.5 text-[11px] tracking-wide uppercase font-semibold bg-ember text-ink px-2 py-[3px] rounded-full">
           Recommended
         </span>
       )}
-      <div className="text-3xl font-bold text-white tabular-nums">{formatAmPm(time)}</div>
-      <div className="text-sm text-slate-400 mt-1">
+      <div className="font-serif text-[28px] leading-none tracking-tight text-linen">{formatAmPm(time)}</div>
+      <div className="text-[12.5px] text-mist/80 mt-2">
         {cycles} sleep {cycles === 1 ? "cycle" : "cycles"} · {hours}h
       </div>
+      <SleepWave
+        cycles={cycles}
+        color={recommended ? "ember" : "moon"}
+        amplitude={5}
+        periodWidth={14}
+        strokeWidth={2}
+        className="absolute right-2 bottom-1.5 opacity-40 pointer-events-none"
+      />
     </div>
   );
 }

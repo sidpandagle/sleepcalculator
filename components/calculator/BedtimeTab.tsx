@@ -14,24 +14,25 @@ export default function BedtimeTab() {
   const results = calculateBedtimes(wakeTime);
 
   return (
-    <div className="space-y-6">
+    <div>
       <fieldset className="border-0 p-0 m-0 w-full min-w-0">
-        <legend className="block text-sm font-medium text-slate-300 mb-3">
-          I need to wake up at:
+        <legend className="block text-[12.5px] tracking-widest uppercase text-mist/80 mb-1 text-center w-full">
+          I need to wake up at
         </legend>
         <TimePicker value={wakeTime} onChange={setWakeTime} presets={WAKE_PRESETS} />
       </fieldset>
+      <div className="h-px bg-moon/8 my-[26px]" />
       <div>
-        <p className="text-sm text-slate-400 mb-4">
+        <p className="text-sm text-mist mb-3.5">
           To wake up feeling refreshed, go to sleep at one of these times:
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
           {[...results].reverse().map((r) => (
             <ResultCard key={r.cycles} {...r} />
           ))}
         </div>
       </div>
-      <p className="text-xs text-slate-500">
+      <p className="text-xs text-mist/70 leading-relaxed mt-4">
         Based on 90-minute sleep cycles + 15-minute average fall-asleep time (National Sleep Foundation).
       </p>
     </div>

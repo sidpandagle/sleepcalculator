@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #080b16;
+  --foreground: #edeff7;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(1100px 620px at 78% -12%, rgba(122, 145, 255, 0.2), transparent 62%),
+    radial-gradient(900px 520px at 8% 4%, rgba(90, 200, 220, 0.1), transparent 60%),
+    var(--background);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: #3b4a8c;
 }
 
 @layer utilities {

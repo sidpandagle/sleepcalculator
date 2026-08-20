@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { generateBabySlugs, slugToBabyMonths } from "@/lib/programmatic";
 import { getBabySleepNeeds } from "@/lib/sleep-engine";
 import StructuredData from "@/components/seo/StructuredData";
@@ -72,42 +73,42 @@ export default async function BabySlugPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <StructuredData data={faqSchema} />
-      <div className="max-w-3xl mx-auto px-4 py-12">
-        <nav className="text-sm text-slate-400 mb-8">
-          <Link href="/" className="hover:text-white transition-colors">Sleep Calculator</Link>
+      <div className="max-w-3xl mx-auto px-4 sm:px-8 pt-16 pb-16">
+        <nav className="text-sm text-mist mb-8">
+          <Link href="/" className="hover:text-linen transition-colors">Sleep Calculator</Link>
           <span className="mx-2">›</span>
-          <Link href="/baby-sleep-calculator" className="hover:text-white transition-colors">Baby Sleep Calculator</Link>
+          <Link href="/baby-sleep-calculator" className="hover:text-linen transition-colors">Baby Sleep Calculator</Link>
           <span className="mx-2">›</span>
-          <span className="text-slate-300">{data.ageLabel}</span>
+          <span className="text-mist">{data.ageLabel}</span>
         </nav>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 leading-tight">
+        <h1 className="font-serif font-normal text-4xl md:text-5xl text-linen mb-3 leading-tight">
           {data.ageLabel} Sleep: How Much Does Your Baby Need?
         </h1>
-        <p className="text-slate-400 mb-10 text-lg">
+        <p className="text-mist mb-10 text-lg">
           AAP guidelines recommend {data.total} hours of sleep per 24 hours for a {data.ageLabel.toLowerCase()} — {data.nighttime}h at night and {data.naps}h across {data.napCount} nap{data.napCount !== 1 ? "s" : ""}.
         </p>
 
         <div className="grid grid-cols-3 gap-3 mb-10">
-          <div className="rounded-xl border border-indigo-500/40 bg-indigo-500/10 p-5">
-            <p className="text-xs font-semibold text-indigo-400 mb-1">Total Sleep</p>
-            <p className="text-4xl font-extrabold text-white">{data.total}h</p>
-            <p className="text-xs text-slate-400 mt-1">per 24 hours</p>
+          <div className="rounded-xl border border-ember/40 bg-ember/10 p-5">
+            <p className="text-xs font-semibold text-ember mb-1">Total Sleep</p>
+            <p className="font-serif font-normal text-5xl text-linen">{data.total}h</p>
+            <p className="text-xs text-mist mt-1">per 24 hours</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-            <p className="text-xs font-semibold text-slate-400 mb-1">Nighttime</p>
-            <p className="text-4xl font-extrabold text-white">{data.nighttime}h</p>
-            <p className="text-xs text-slate-400 mt-1">at night</p>
+          <div className="rounded-[18px] border border-moon/9 bg-dusk p-5">
+            <p className="text-xs font-semibold text-mist mb-1">Nighttime</p>
+            <p className="font-serif font-normal text-5xl text-linen">{data.nighttime}h</p>
+            <p className="text-xs text-mist mt-1">at night</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-            <p className="text-xs font-semibold text-slate-400 mb-1">Naps</p>
-            <p className="text-4xl font-extrabold text-white">{data.naps}h</p>
-            <p className="text-xs text-slate-400 mt-1">{data.napCount} nap{data.napCount !== 1 ? "s" : ""}/day</p>
+          <div className="rounded-[18px] border border-moon/9 bg-dusk p-5">
+            <p className="text-xs font-semibold text-mist mb-1">Naps</p>
+            <p className="font-serif font-normal text-5xl text-linen">{data.naps}h</p>
+            <p className="text-xs text-mist mt-1">{data.napCount} nap{data.napCount !== 1 ? "s" : ""}/day</p>
           </div>
         </div>
 
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-4">Frequently asked questions</h2>
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">Frequently asked questions</h2>
           <div className="space-y-3">
             {[
               {
@@ -123,19 +124,19 @@ export default async function BabySlugPage({ params }: { params: Promise<{ slug:
                 a: "Signs of adequate sleep: waking naturally (not crying), good mood during wake windows, normal weight gain, age-appropriate alertness. Overtiredness shows as fussiness, difficulty settling, and early waking.",
               },
             ].map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
-                <summary className="font-medium text-white list-none flex justify-between items-center p-5">
+              <details key={q} className="group rounded-[18px] border border-moon/9 bg-dusk cursor-pointer">
+                <summary className="font-medium text-linen list-none flex justify-between items-center p-5">
                   {q}
-                  <span className="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+                  <ChevronDown className="w-4 h-4 text-mist group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
+                <p className="px-5 pb-5 text-sm text-mist leading-relaxed">{a}</p>
               </details>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-bold text-white mb-4">Other ages</h2>
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">Other ages</h2>
           <div className="flex flex-wrap gap-2">
             {neighbors.map(({ slug: s, months: m }) => {
               const neighborData = getBabySleepNeeds(m);
@@ -143,15 +144,15 @@ export default async function BabySlugPage({ params }: { params: Promise<{ slug:
                 <Link
                   key={s}
                   href={`/baby-sleep-calculator/${s}`}
-                  className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+                  className="px-3.5 py-1.5 rounded-full border border-moon/8 bg-dusk text-sm text-mist hover:text-linen hover:bg-moon/5 transition-colors"
                 >
                   {neighborData.ageLabel}
                 </Link>
               );
             })}
           </div>
-          <p className="mt-6 text-sm text-slate-500">
-            <Link href="/baby-sleep-calculator" className="text-indigo-400 hover:text-indigo-300 transition-colors">
+          <p className="mt-6 text-sm text-mist/70">
+            <Link href="/baby-sleep-calculator" className="text-ember hover:text-ember-light transition-colors">
               ← Back to Baby Sleep Calculator
             </Link>
           </p>

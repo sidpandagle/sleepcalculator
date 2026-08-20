@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { generateREMSlugs, slugToREMHours } from "@/lib/programmatic";
 import { calculateREMSleep } from "@/lib/sleep-engine";
 import StructuredData from "@/components/seo/StructuredData";
@@ -73,53 +74,53 @@ export default async function REMSlugPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <StructuredData data={faqSchema} />
-      <div className="max-w-3xl mx-auto px-4 py-12">
-        <nav className="text-sm text-slate-400 mb-8">
-          <Link href="/" className="hover:text-white transition-colors">Sleep Calculator</Link>
+      <div className="max-w-3xl mx-auto px-4 sm:px-8 pt-16 pb-16">
+        <nav className="text-sm text-mist mb-8">
+          <Link href="/" className="hover:text-linen transition-colors">Sleep Calculator</Link>
           <span className="mx-2">›</span>
-          <Link href="/rem-sleep-calculator" className="hover:text-white transition-colors">REM Sleep Calculator</Link>
+          <Link href="/rem-sleep-calculator" className="hover:text-linen transition-colors">REM Sleep Calculator</Link>
           <span className="mx-2">›</span>
-          <span className="text-slate-300">{hours} Hours</span>
+          <span className="text-mist">{hours} Hours</span>
         </nav>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 leading-tight">
+        <h1 className="font-serif font-normal text-4xl md:text-5xl text-linen mb-3 leading-tight">
           REM Sleep in {hours} Hours of Sleep
         </h1>
-        <p className="text-slate-400 mb-10 text-lg">
+        <p className="text-mist mb-10 text-lg">
           {result.cycles > 0
             ? `${hours} hours of sleep gives you ${result.cycles} complete sleep cycle${result.cycles !== 1 ? "s" : ""} and approximately ${result.remMinutes} minutes of REM sleep.`
             : `${hours} hours is less than one complete 90-minute cycle. You get minimal REM sleep.`}
         </p>
 
         <div className="grid grid-cols-2 gap-4 mb-10">
-          <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-5">
-            <p className="text-sm font-semibold text-indigo-300 mb-1">Total REM Sleep</p>
-            <p className="text-white font-bold text-3xl">{result.remMinutes} min</p>
-            <p className="text-slate-400 text-sm mt-1">{result.remPercent}% of total sleep</p>
+          <div className="rounded-xl border border-ember/30 bg-ember/10 p-5">
+            <p className="text-sm font-semibold text-ember-light mb-1">Total REM Sleep</p>
+            <p className="text-linen font-bold text-3xl">{result.remMinutes} min</p>
+            <p className="text-mist text-sm mt-1">{result.remPercent}% of total sleep</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-            <p className="text-sm font-semibold text-slate-400 mb-1">Sleep Cycles</p>
-            <p className="text-white font-bold text-3xl">{result.cycles}</p>
-            <p className="text-slate-400 text-sm mt-1">complete 90-min cycles</p>
+          <div className="rounded-[18px] border border-moon/9 bg-dusk p-5">
+            <p className="text-sm font-semibold text-mist mb-1">Sleep Cycles</p>
+            <p className="text-linen font-bold text-3xl">{result.cycles}</p>
+            <p className="text-mist text-sm mt-1">complete 90-min cycles</p>
           </div>
         </div>
 
         {result.cycles > 0 && (
           <section className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-4">REM breakdown by cycle at {hours} hours</h2>
+            <h2 className="font-serif font-normal text-2xl text-linen mb-4">REM breakdown by cycle at {hours} hours</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left">
                 <thead>
-                  <tr className="border-b border-white/10 text-slate-400">
+                  <tr className="border-b border-moon/8 text-mist">
                     <th className="pb-2 pr-6 font-medium">Cycle</th>
                     <th className="pb-2 font-medium">REM Sleep</th>
                   </tr>
                 </thead>
                 <tbody>
                   {result.breakdown.map(({ cycle, remMinutes: rem }) => (
-                    <tr key={cycle} className="border-b border-white/5 text-slate-300">
-                      <td className="py-2.5 pr-6 font-semibold text-white">Cycle {cycle}</td>
-                      <td className="py-2.5 text-indigo-300 font-medium">{rem} min</td>
+                    <tr key={cycle} className="border-b border-moon/5 text-mist">
+                      <td className="py-2.5 pr-6 font-semibold text-linen">Cycle {cycle}</td>
+                      <td className="py-2.5 text-ember-light font-medium">{rem} min</td>
                     </tr>
                   ))}
                 </tbody>
@@ -129,7 +130,7 @@ export default async function REMSlugPage({ params }: { params: Promise<{ slug: 
         )}
 
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-4">Frequently asked questions</h2>
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">Frequently asked questions</h2>
           <div className="space-y-3">
             {[
               {
@@ -147,33 +148,33 @@ export default async function REMSlugPage({ params }: { params: Promise<{ slug: 
                 a: "Yes. Healthy adults spend 20–25% of total sleep in REM. Lower amounts can indicate alcohol use, certain medications, or sleep disorders.",
               },
             ].map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
-                <summary className="font-medium text-white list-none flex justify-between items-center p-5">
+              <details key={q} className="group rounded-[18px] border border-moon/9 bg-dusk cursor-pointer">
+                <summary className="font-medium text-linen list-none flex justify-between items-center p-5">
                   {q}
-                  <span className="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+                  <ChevronDown className="w-4 h-4 text-mist group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
+                <p className="px-5 pb-5 text-sm text-mist leading-relaxed">{a}</p>
               </details>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-bold text-white mb-4">Other sleep durations</h2>
+          <h2 className="font-serif font-normal text-2xl text-linen mb-4">Other sleep durations</h2>
           <div className="flex flex-wrap gap-2">
             {neighbors.map(({ slug: s, hours: h }) => (
               <Link
                 key={s}
                 href={`/rem-sleep-calculator/${s}`}
-                className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+                className="px-3.5 py-1.5 rounded-full border border-moon/8 bg-dusk text-sm text-mist hover:text-linen hover:bg-moon/5 transition-colors"
               >
                 {h}h of sleep
               </Link>
             ))}
           </div>
-          <p className="mt-6 text-sm text-slate-500">
+          <p className="mt-6 text-sm text-mist/70">
             Try the interactive calculator:{" "}
-            <Link href="/rem-sleep-calculator" className="text-indigo-400 hover:text-indigo-300 transition-colors">
+            <Link href="/rem-sleep-calculator" className="text-ember hover:text-ember-light transition-colors">
               REM Sleep Calculator →
             </Link>
           </p>

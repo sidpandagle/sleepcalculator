@@ -24,26 +24,25 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
 
   return (
     <div className="space-y-3 min-w-0">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between gap-3">
         <button
           onClick={() => nudge(-15)}
           aria-label="Subtract 15 minutes"
-          className="px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/10 transition-all"
+          className="w-11 h-11 shrink-0 rounded-[14px] border border-moon/14 flex items-center justify-center text-xl text-linen/80 hover:bg-moon/8 transition-all cursor-pointer select-none"
         >
-          − 15 min
+          −
         </button>
-        <div
-          aria-live="polite"
-          className="text-2xl font-bold text-white tabular-nums min-w-[110px] text-center"
-        >
-          {display12h(value)}
+        <div aria-live="polite" className="text-center flex-1 min-w-0">
+          <div className="font-serif text-5xl sm:text-[60px] leading-none tracking-tight text-linen">
+            {display12h(value)}
+          </div>
         </div>
         <button
           onClick={() => nudge(15)}
           aria-label="Add 15 minutes"
-          className="px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/10 transition-all"
+          className="w-11 h-11 shrink-0 rounded-[14px] border border-moon/14 flex items-center justify-center text-xl text-linen/80 hover:bg-moon/8 transition-all cursor-pointer select-none"
         >
-          + 15 min
+          +
         </button>
       </div>
       <div className="flex flex-nowrap overflow-x-auto gap-2 px-1 py-1 [&::-webkit-scrollbar]:hidden" style={{scrollbarWidth: "none"}}>
@@ -58,10 +57,10 @@ export default function TimePicker({ value, onChange, presets }: TimePickerProps
               }}
               onClick={() => onChange(preset)}
               aria-pressed={active}
-              className={`shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+              className={`shrink-0 min-h-[42px] px-3.5 py-2.5 rounded-[11px] text-[13.5px] font-medium transition-all whitespace-nowrap border ${
                 active
-                  ? "bg-indigo-600 text-white"
-                  : "bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10"
+                  ? "border-[#9FB2FF]/50 bg-[#9FB2FF]/16 text-[#DDE4FF]"
+                  : "border-moon/10 bg-moon/3 text-mist hover:bg-moon/8"
               }`}
             >
               {display12h(preset)}

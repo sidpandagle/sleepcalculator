@@ -17,7 +17,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
     (
       <div
         style={{
-          background: "#020617",
+          background: "#080B16",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -28,22 +28,22 @@ export default async function Image({ params }: { params: { slug: string } }) {
           padding: "60px",
         }}
       >
-        <div style={{ fontSize: 20, color: "#6366f1", letterSpacing: "0.15em", marginBottom: 20, textTransform: "uppercase" }}>
+        <div style={{ fontSize: 20, color: "#9FB2FF", letterSpacing: "0.15em", marginBottom: 20, textTransform: "uppercase" }}>
           sleepschedule.in
         </div>
-        <div style={{ fontSize: 36, color: "#94a3b8", marginBottom: 16 }}>
+        <div style={{ fontSize: 36, color: "#9BA5C2", marginBottom: 16 }}>
           Wake up at {display}?
         </div>
-        <div style={{ fontSize: 58, fontWeight: 800, color: "#f1f5f9", textAlign: "center", lineHeight: 1.2, marginBottom: 32 }}>
+        <div style={{ fontSize: 58, fontWeight: 800, color: "#EDEFF7", textAlign: "center", lineHeight: 1.2, marginBottom: 32 }}>
           Go to bed at {recommended || "—"}
         </div>
         <div
           style={{
-            background: "#1e1b4b",
-            border: "1px solid #4338ca",
+            background: "rgba(232,185,138,0.1)",
+            border: "1px solid rgba(232,185,138,0.35)",
             borderRadius: "12px",
             padding: "16px 32px",
-            color: "#a5b4fc",
+            color: "#E8B98A",
             fontSize: 18,
           }}
         >

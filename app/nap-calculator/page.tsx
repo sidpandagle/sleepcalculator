@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Zap, RefreshCw, AlertTriangle, ChevronDown, Link2 } from "lucide-react";
+import { Link2, Plus } from "lucide-react";
 import NapTab from "@/components/calculator/NapTab";
 import StructuredData from "@/components/seo/StructuredData";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -74,77 +74,90 @@ export default function NapCalculatorPage() {
       />
       <StructuredData data={faqSchema} />
       <StructuredData data={webAppSchema} />
-      <div className="max-w-3xl mx-auto px-4 py-12">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
-            Nap Calculator
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-8 pt-16 pb-10">
+        <div className="max-w-[56ch]">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ember/30 bg-ember/9 text-[12.5px] tracking-wide uppercase text-ember">
+            Daytime rest
+          </div>
+          <h1 className="font-serif font-normal text-5xl sm:text-[68px] leading-[1.02] mt-5 text-linen">
+            Nap <span className="italic text-ember">Calculator</span>
           </h1>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg leading-relaxed text-mist mt-4">
             Pick your nap start time and get the perfect alarm. A 20-minute power nap or a
             90-minute full cycle — both wake you up without grogginess.
           </p>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-mist/70 mt-4">
             Written by{" "}
-            <a href="/about" className="underline hover:text-slate-400 transition-colors">
+            <a href="/about" className="text-ember hover:text-ember-light transition-colors">
               Siddhant Pandagle
             </a>
             {" "}&middot; <time dateTime="2026-08-17">Last reviewed: August 2026</time>
           </p>
         </div>
 
-        <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 mb-12">
-          <NapTab />
-        </section>
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-5 mt-11 items-start">
+          <section
+            className="rounded-[26px] border border-moon/10 p-6 sm:p-7"
+            style={{ background: "linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.025))" }}
+          >
+            <NapTab />
+          </section>
 
-        <section className="mb-12 grid md:grid-cols-3 gap-6">
-          {[
-            {
-              Icon: Zap,
-              title: "20-Min Power Nap",
-              body: "Stays in light sleep (stage 1–2). You wake up sharp with no grogginess. Best for a quick midday recharge.",
-            },
-            {
-              Icon: RefreshCw,
-              title: "90-Min Full Cycle",
-              body: "Completes light sleep, deep sleep, and REM. Feels like a proper sleep. Best when you have time.",
-            },
-            {
-              Icon: AlertTriangle,
-              title: "Avoid 30–60 Min",
-              body: "Drops you into deep sleep mid-cycle. Waking here causes sleep inertia — that heavy, disoriented feeling.",
-            },
-          ].map(({ Icon, title, body }) => (
-            <div key={title} className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-3 text-indigo-400"><Icon className="w-7 h-7" aria-hidden="true" /></div>
-              <h3 className="font-semibold text-white mb-2">{title}</h3>
-              <p className="text-sm text-slate-400">{body}</p>
+          <div className="flex flex-col gap-4">
+            <div className="rounded-[20px] border border-moon/9 bg-moon/3 p-6">
+              <h3 className="text-[17px] font-semibold text-linen">The nap window</h3>
+              <p className="text-[14.5px] leading-relaxed text-mist mt-2 mb-4">
+                Most people dip in alertness between 1 and 3 PM. That trough is the cheapest place to spend a nap.
+              </p>
+              <div className="flex gap-[3px] h-14 items-end">
+                {[72, 80, 74, 52, 34, 30, 46, 62, 70, 64, 48, 30].map((v, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 rounded-[3px]"
+                    style={{
+                      height: `${v}%`,
+                      background: i >= 3 && i <= 5 ? "#E8B98A" : "rgba(159,178,255,0.35)",
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="flex justify-between text-xs text-mist/70 mt-2">
+                <span>9 AM</span><span>1 PM</span><span>5 PM</span><span>9 PM</span>
+              </div>
             </div>
-          ))}
-        </section>
+            <div className="rounded-[20px] border border-moon/9 bg-moon/3 p-6">
+              <h3 className="text-[17px] font-semibold text-linen">Avoid the 45-minute nap</h3>
+              <p className="text-[14.5px] leading-relaxed text-mist mt-2">
+                At around 40 minutes you&apos;re deep in slow-wave sleep. Waking there is what produces the heavy, worse-than-before feeling.
+              </p>
+            </div>
+          </div>
+        </div>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">How this calculator works</h2>
-          <p className="text-slate-400 leading-relaxed mb-4">
+        <div className="max-w-3xl mx-auto">
+        <section className="mb-12 mt-20">
+          <h2 className="font-serif font-normal text-3xl text-linen mb-4">How this calculator works</h2>
+          <p className="text-mist leading-relaxed mb-4">
             Enter your nap start time and the calculator adds 20 minutes (power nap) and 90 minutes (full cycle) to give you wake alarms for both durations. The 20-minute duration is chosen to keep you in Stage 1 and Stage 2 light sleep — short enough that most people don&apos;t enter deep slow-wave sleep (N3), which is what causes sleep inertia. The 90-minute duration allows a complete N1 → N2 → N3 → REM cycle, so you wake at the end of REM rather than mid-N3.
           </p>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-mist leading-relaxed">
             A sleep onset buffer is not applied to naps (unlike nighttime sleep) because many people fall asleep faster when napping during the day. If you typically take 10+ minutes to fall asleep for naps, set your start time 10 minutes earlier.
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Optimal nap window by wake time</h2>
-          <p className="text-slate-400 mb-4 text-sm">Napping too late reduces nighttime sleep drive. This table shows the latest recommended nap start time based on your wake time, assuming a 10–11 PM bedtime.</p>
+          <h2 className="font-serif font-normal text-3xl text-linen mb-6">Optimal nap window by wake time</h2>
+          <p className="text-mist mb-4 text-sm">Napping too late reduces nighttime sleep drive. This table shows the latest recommended nap start time based on your wake time, assuming a 10–11 PM bedtime.</p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead>
-                <tr className="border-b border-white/10 text-slate-400">
+                <tr className="border-b border-moon/8 text-mist">
                   <th className="pb-2 pr-6 font-medium">Wake time</th>
                   <th className="pb-2 pr-6 font-medium">Latest 20-min nap start</th>
                   <th className="pb-2 font-medium">Latest 90-min nap start</th>
                 </tr>
               </thead>
-              <tbody className="text-slate-300">
+              <tbody className="text-mist">
                 {[
                   ["5:00 AM", "3:00 PM", "1:30 PM"],
                   ["6:00 AM", "3:30 PM", "2:00 PM"],
@@ -152,53 +165,53 @@ export default function NapCalculatorPage() {
                   ["8:00 AM", "4:30 PM", "3:00 PM"],
                   ["9:00 AM", "5:00 PM", "3:30 PM"],
                 ].map(([wake, max20, max90]) => (
-                  <tr key={wake} className="border-b border-white/5">
-                    <td className="py-2.5 pr-6 font-semibold text-white">{wake}</td>
-                    <td className="py-2.5 pr-6 text-indigo-300 font-medium">{max20}</td>
-                    <td className="py-2.5 text-indigo-300 font-medium">{max90}</td>
+                  <tr key={wake} className="border-b border-moon/5">
+                    <td className="py-2.5 pr-6 font-semibold text-linen">{wake}</td>
+                    <td className="py-2.5 pr-6 text-ember-light font-medium">{max20}</td>
+                    <td className="py-2.5 text-ember-light font-medium">{max90}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500 mt-3">Based on a standard 10–11 PM bedtime target. Adjust proportionally for later bedtimes.</p>
+          <p className="text-xs text-mist/70 mt-3">Based on a standard 10–11 PM bedtime target. Adjust proportionally for later bedtimes.</p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">Interpreting your nap alarm</h2>
-          <p className="text-slate-400 leading-relaxed mb-4">
-            The <strong className="text-white">20-minute alarm</strong> is best for a quick alertness boost before an afternoon meeting, a commute, or exercise. Expect to feel alert within 5 minutes of waking — no grogginess, immediate performance improvement. The{" "}
-            <a href="https://ntrs.nasa.gov/citations/19950006329" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">NASA nap study (Rosekind et al., 1994)</a>{" "}
+          <h2 className="font-serif font-normal text-3xl text-linen mb-4">Interpreting your nap alarm</h2>
+          <p className="text-mist leading-relaxed mb-4">
+            The <strong className="text-linen">20-minute alarm</strong> is best for a quick alertness boost before an afternoon meeting, a commute, or exercise. Expect to feel alert within 5 minutes of waking — no grogginess, immediate performance improvement. The{" "}
+            <a href="https://ntrs.nasa.gov/citations/19950006329" target="_blank" rel="noopener noreferrer" className="underline hover:text-mist transition-colors">NASA nap study (Rosekind et al., 1994)</a>{" "}
             showed this duration improves alertness by 54% and performance by 34% in pilots.
           </p>
-          <p className="text-slate-400 leading-relaxed">
-            The <strong className="text-white">90-minute alarm</strong> is best when you need to consolidate learning, recover from significant sleep debt, or have 2+ hours before your next commitment. Expect minimal grogginess because you&apos;re waking from the end of REM or light N2 — not from deep sleep. Allow yourself 5 minutes to fully orient before driving or precision work.
+          <p className="text-mist leading-relaxed">
+            The <strong className="text-linen">90-minute alarm</strong> is best when you need to consolidate learning, recover from significant sleep debt, or have 2+ hours before your next commitment. Expect minimal grogginess because you&apos;re waking from the end of REM or light N2 — not from deep sleep. Allow yourself 5 minutes to fully orient before driving or precision work.
           </p>
         </section>
 
         <section className="mb-12">
-          <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-6 flex items-start gap-4">
-            <Link2 className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
+          <div className="rounded-xl border border-ember/30 bg-ember/10 p-6 flex items-start gap-4">
+            <Link2 className="w-5 h-5 text-ember shrink-0 mt-0.5" aria-hidden="true" />
             <div>
-              <p className="text-sm font-semibold text-indigo-300 mb-1">Related tool</p>
-              <p className="text-slate-300 text-sm mb-3">Needing a daily nap to function often signals accumulated sleep debt. See how much sleep you&apos;ve lost this week.</p>
-              <a href="/sleep-debt-calculator" className="text-sm text-indigo-400 font-medium hover:text-indigo-300 transition-colors">Sleep Debt Calculator →</a>
+              <p className="text-sm font-semibold text-ember-light mb-1">Related tool</p>
+              <p className="text-mist text-sm mb-3">Needing a daily nap to function often signals accumulated sleep debt. See how much sleep you&apos;ve lost this week.</p>
+              <a href="/sleep-debt-calculator" className="text-sm text-ember font-medium hover:text-ember-light transition-colors">Sleep Debt Calculator →</a>
             </div>
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
-          <p className="text-slate-400 leading-relaxed">
+          <h2 className="font-serif font-normal text-3xl text-linen mb-4">Limitations</h2>
+          <p className="text-mist leading-relaxed">
             Nap duration recommendations are based on population-average sleep cycle lengths of 90 minutes. Individual cycles range from 70–110 minutes. If you consistently wake feeling groggy from a 20-minute nap, your sleep onset may be faster than average — try 15 minutes. If you regularly feel groggy after 90 minutes, your cycle may be shorter — try 75 minutes. Napping is not a substitute for adequate nighttime sleep — the{" "}
-            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">CDC</a>{" "}
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-ember-light underline transition-colors">CDC</a>{" "}
             recommends adults get at least 7 hours per night, and a nap cannot fully repay chronic sleep debt. If you find yourself needing a nap most days just to function, that recurring need is itself a signal worth paying attention to, not just the nap timing.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Frequently asked questions</h2>
-          <div className="space-y-3">
+          <h2 className="font-serif font-normal text-3xl text-linen mb-6">Frequently asked questions</h2>
+          <div className="flex flex-col">
             {[
               {
                 q: "How long should a nap be?",
@@ -217,33 +230,34 @@ export default function NapCalculatorPage() {
                 a: "Between 1 PM and 3 PM — this aligns with the natural post-lunch alertness dip. Avoid napping after 4 PM as it can disrupt night sleep.",
               },
             ].map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
-                <summary className="font-medium text-white list-none flex justify-between items-center p-5">
+              <details key={q} className="group border-t border-moon/9 py-4 cursor-pointer">
+                <summary className="font-medium text-linen list-none flex justify-between items-center gap-4">
                   {q}
-                  <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
+                  <Plus className="w-4 h-4 text-ember group-open:rotate-45 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
+                <p className="pt-3 text-sm text-mist leading-relaxed">{a}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <section className="mt-8 pt-6 border-t border-white/5">
-          <p className="text-xs text-slate-500">
+        <section className="mt-8 pt-6 border-t border-moon/5">
+          <p className="text-xs text-mist/70">
             Sources:{" "}
-            <a href="https://ntrs.nasa.gov/citations/19950006329" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+            <a href="https://ntrs.nasa.gov/citations/19950006329" target="_blank" rel="noopener noreferrer" className="underline hover:text-mist transition-colors">
               NASA Technical Memorandum 108839 — Rosekind et al. (1994)
             </a>
             {" "}·{" "}
-            <a href="https://www.thensf.org/sleep-in-america-polls/" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+            <a href="https://www.thensf.org/sleep-in-america-polls/" target="_blank" rel="noopener noreferrer" className="underline hover:text-mist transition-colors">
               National Sleep Foundation
             </a>
             {" "}·{" "}
-            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-400 transition-colors">
+            <a href="https://www.cdc.gov/sleep/about/index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-mist transition-colors">
               CDC — About Sleep
             </a>
           </p>
         </section>
+        </div>
       </div>
     </>
   );

@@ -29,22 +29,22 @@ export default async function BlogPage() {
   const typedPosts = (posts ?? []) as unknown as Post[];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
-      <div className="mb-10">
-        <h1 className="text-4xl font-extrabold text-white">Sleep Blog</h1>
-        <p className="text-slate-400 mt-3">
+    <div className="max-w-[1240px] mx-auto px-4 sm:px-8 pt-16 pb-20">
+      <div className="mb-11">
+        <h1 className="font-serif font-normal text-5xl sm:text-6xl text-linen">Sleep Blog</h1>
+        <p className="text-mist mt-4 text-lg">
           Evidence-based guides on sleep science, cycles, and better rest.
         </p>
       </div>
 
       {typedPosts.length > 0 ? (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-5">
           {typedPosts.map((post) => (
             <BlogCard key={post.id} post={post} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 text-slate-500">
+        <div className="text-center py-20 text-mist/70">
           <p>No posts published yet. Check back soon.</p>
         </div>
       )}

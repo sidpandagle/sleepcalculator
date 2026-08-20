@@ -10,7 +10,7 @@ export default function Image() {
     (
       <div
         style={{
-          background: "#020617",
+          background: "#080B16",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -21,13 +21,13 @@ export default function Image() {
           padding: "60px",
         }}
       >
-        <div style={{ fontSize: 22, color: "#6366f1", letterSpacing: "0.15em", marginBottom: 24, textTransform: "uppercase" }}>
+        <div style={{ fontSize: 22, color: "#9FB2FF", letterSpacing: "0.15em", marginBottom: 24, textTransform: "uppercase" }}>
           sleepschedule.in
         </div>
-        <div style={{ fontSize: 56, fontWeight: 800, color: "#f1f5f9", textAlign: "center", lineHeight: 1.2, marginBottom: 24 }}>
+        <div style={{ fontSize: 56, fontWeight: 800, color: "#EDEFF7", textAlign: "center", lineHeight: 1.2, marginBottom: 24 }}>
           Sleep Schedule
         </div>
-        <div style={{ fontSize: 26, color: "#94a3b8", textAlign: "center", maxWidth: 800, lineHeight: 1.5 }}>
+        <div style={{ fontSize: 26, color: "#9BA5C2", textAlign: "center", maxWidth: 800, lineHeight: 1.5 }}>
           Free sleep calculators based on 90-minute sleep cycles
         </div>
         <div
@@ -41,11 +41,11 @@ export default function Image() {
             <div
               key={tool}
               style={{
-                background: "#1e1b4b",
-                border: "1px solid #4338ca",
+                background: "rgba(159,178,255,0.1)",
+                border: "1px solid rgba(159,178,255,0.35)",
                 borderRadius: "8px",
                 padding: "8px 14px",
-                color: "#a5b4fc",
+                color: "#B6C3FF",
                 fontSize: 14,
               }}
             >

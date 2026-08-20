@@ -14,24 +14,32 @@ export default function SleepCalculator() {
   const [active, setActive] = useState<TabId>("bedtime");
 
   return (
-    <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8">
-      <div className="flex gap-1 mb-8 bg-white/5 rounded-xl p-1">
+    <section
+      className="rounded-[26px] border border-moon/10 p-6 sm:p-[34px]"
+      style={{
+        background: "linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.025))",
+        boxShadow: "0 40px 90px -40px rgba(0,0,0,0.9)",
+      }}
+    >
+      <div className="grid grid-cols-2 gap-1 p-1 rounded-[14px] bg-black/32">
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActive(tab.id)}
-            className={`flex-1 text-sm font-medium py-2.5 px-3 rounded-lg transition-all ${
+            className={`text-[14.5px] font-medium py-[11px] px-3 rounded-[11px] transition-all cursor-pointer ${
               active === tab.id
-                ? "bg-indigo-600 text-white shadow-lg"
-                : "text-slate-400 hover:text-white"
+                ? "bg-white/10 text-linen"
+                : "text-mist hover:text-linen"
             }`}
           >
             {tab.label}
           </button>
         ))}
       </div>
-      {active === "wakeup" && <WakeUpTab />}
-      {active === "bedtime" && <BedtimeTab />}
+      <div className="mt-[34px]">
+        {active === "wakeup" && <WakeUpTab />}
+        {active === "bedtime" && <BedtimeTab />}
+      </div>
     </section>
   );
 }

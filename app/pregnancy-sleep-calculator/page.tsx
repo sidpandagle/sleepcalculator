@@ -74,24 +74,24 @@ export default function PregnancySleepCalculatorPage() {
           { name: "Pregnancy Sleep Calculator", url: "https://sleepschedule.in/pregnancy-sleep-calculator" },
         ]}
       />
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-8 pt-16 pb-16">
         <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="font-serif font-normal text-5xl sm:text-6xl text-linen mb-4 leading-tight">
             Pregnancy Sleep Calculator
           </h1>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg text-mist max-w-2xl mx-auto">
             Select your trimester to see how much sleep you need, common sleep issues, and tips to help you rest better.
           </p>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-mist/70 mt-3">
             Written by{" "}
-            <a href="/about" className="underline hover:text-slate-400 transition-colors">
+            <a href="/about" className="underline hover:text-mist transition-colors">
               Siddhant Pandagle
             </a>
             {" "}&middot; <time dateTime="2026-08-17">Last reviewed: August 2026</time>
           </p>
         </div>
 
-        <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 mb-12">
+        <section className="rounded-[26px] border border-moon/10 bg-dusk p-6 md:p-8 mb-12">
           <PregnancyTab />
         </section>
 
@@ -113,41 +113,41 @@ export default function PregnancySleepCalculatorPage() {
               body: "Discomfort peaks. A full-body pillow, left-side sleeping, and limiting fluids before bed all help.",
             },
           ].map(({ Icon, title, body }) => (
-            <div key={title} className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-3 text-indigo-400"><Icon className="w-7 h-7" aria-hidden="true" /></div>
-              <h3 className="font-semibold text-white mb-2">{title}</h3>
-              <p className="text-sm text-slate-400">{body}</p>
+            <div key={title} className="rounded-[18px] border border-moon/9 bg-dusk p-6">
+              <div className="mb-3 text-ember"><Icon className="w-7 h-7" aria-hidden="true" /></div>
+              <h3 className="font-semibold text-linen mb-2">{title}</h3>
+              <p className="text-sm text-mist">{body}</p>
             </div>
           ))}
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">Why pregnancy disrupts sleep</h2>
-          <p className="text-slate-400 leading-relaxed mb-4">
+          <h2 className="font-serif font-normal text-3xl text-linen mb-4">Why pregnancy disrupts sleep</h2>
+          <p className="text-mist leading-relaxed mb-4">
             Each trimester of pregnancy brings a distinct combination of hormonal and physical changes that reshape how — and how well — you sleep. Understanding what&apos;s driving the disruption in each phase makes it easier to tell ordinary discomfort apart from something worth flagging to your provider.
           </p>
-          <p className="text-slate-400 leading-relaxed mb-4">
-            <strong className="text-slate-200">First trimester (weeks 1–12).</strong> Progesterone rises sharply almost as soon as the placenta begins forming, and this hormone has a natural sedative effect — it&apos;s a major reason so many people feel an overwhelming urge to nap in the early months. Progesterone also relaxes smooth muscle throughout the body, including the bladder, which is part of why frequent urination starts interrupting sleep this early. Nausea and heightened smell sensitivity can make it harder to fall back asleep after waking.
+          <p className="text-mist leading-relaxed mb-4">
+            <strong className="text-linen">First trimester (weeks 1–12).</strong> Progesterone rises sharply almost as soon as the placenta begins forming, and this hormone has a natural sedative effect — it&apos;s a major reason so many people feel an overwhelming urge to nap in the early months. Progesterone also relaxes smooth muscle throughout the body, including the bladder, which is part of why frequent urination starts interrupting sleep this early. Nausea and heightened smell sensitivity can make it harder to fall back asleep after waking.
           </p>
-          <p className="text-slate-400 leading-relaxed mb-4">
-            <strong className="text-slate-200">Second trimester (weeks 13–26).</strong> Hormone levels tend to stabilize during this stretch, and for many people it&apos;s the most restful trimester of the three. It isn&apos;t maintenance-free, though: round ligament pain — a stretching sensation on one or both sides of the lower abdomen as the uterus grows — can cause brief nighttime discomfort, and vivid or unusual dreams, likely tied to hormonal shifts and more time spent in REM sleep, are common.
+          <p className="text-mist leading-relaxed mb-4">
+            <strong className="text-linen">Second trimester (weeks 13–26).</strong> Hormone levels tend to stabilize during this stretch, and for many people it&apos;s the most restful trimester of the three. It isn&apos;t maintenance-free, though: round ligament pain — a stretching sensation on one or both sides of the lower abdomen as the uterus grows — can cause brief nighttime discomfort, and vivid or unusual dreams, likely tied to hormonal shifts and more time spent in REM sleep, are common.
           </p>
-          <p className="text-slate-400 leading-relaxed">
-            <strong className="text-slate-200">Third trimester (weeks 27–40).</strong> This is typically the hardest trimester for sleep. A larger uterus presses on the bladder again, bringing back frequent nighttime bathroom trips, and the same growing weight — combined with a shifted center of gravity — contributes to lower back pain that makes side sleeping, and finding any comfortable position, more difficult. Restless leg syndrome (an uncomfortable urge to move the legs that&apos;s worse at rest) also becomes more common in the third trimester. On top of the physical load, mild anxiety about labor and the transition to parenthood can make it harder to fall asleep even when the body is exhausted. According to the{" "}
-            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+          <p className="text-mist leading-relaxed">
+            <strong className="text-linen">Third trimester (weeks 27–40).</strong> This is typically the hardest trimester for sleep. A larger uterus presses on the bladder again, bringing back frequent nighttime bathroom trips, and the same growing weight — combined with a shifted center of gravity — contributes to lower back pain that makes side sleeping, and finding any comfortable position, more difficult. Restless leg syndrome (an uncomfortable urge to move the legs that&apos;s worse at rest) also becomes more common in the third trimester. On top of the physical load, mild anxiety about labor and the transition to parenthood can make it harder to fall asleep even when the body is exhausted. According to the{" "}
+            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-ember-light underline transition-colors">
               American College of Obstetricians and Gynecologists (ACOG)
             </a>, these disruptions are a normal part of pregnancy for most people, but persistent or severe sleep problems are still worth discussing at a prenatal visit rather than dismissing as unavoidable.
           </p>
         </section>
 
         <section className="mb-12">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-            <p className="text-sm text-slate-300 leading-relaxed">
+          <div className="rounded-[18px] border border-moon/9 bg-dusk p-6 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <p className="text-sm text-mist leading-relaxed">
               Feeling wiped out during the day? Pregnancy fatigue — especially in the first and third trimesters — is extremely common. A short, well-timed nap can help you catch up without wrecking your nighttime sleep.
             </p>
             <Link
               href="/nap-calculator"
-              className="shrink-0 inline-flex items-center justify-center rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-medium px-4 py-2.5 transition-colors"
+              className="shrink-0 inline-flex items-center justify-center rounded-lg bg-ember hover:bg-ember-dark text-ink text-sm font-medium px-4 py-2.5 transition-colors"
             >
               Try the Nap Calculator
             </Link>
@@ -155,44 +155,44 @@ export default function PregnancySleepCalculatorPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">Safe sleep positions during pregnancy</h2>
-          <p className="text-slate-400 leading-relaxed mb-4">
+          <h2 className="font-serif font-normal text-3xl text-linen mb-4">Safe sleep positions during pregnancy</h2>
+          <p className="text-mist leading-relaxed mb-4">
             As pregnancy progresses, sleep position becomes more than a matter of comfort. Guidance from{" "}
-            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-ember-light underline transition-colors">
               ACOG
             </a>{" "}
             and the{" "}
-            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-ember-light underline transition-colors">
               National Sleep Foundation (NSF)
             </a>{" "}
             generally recommends left-side sleeping in the second half of pregnancy. Lying on the left side keeps the weight of the growing uterus off the inferior vena cava — the large vein that returns blood from the lower body to the heart — which supports healthy blood flow to the placenta.
           </p>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-mist leading-relaxed">
             Sleeping on your back for extended periods later in pregnancy is generally discouraged for the same reason. If you wake up on your back, that&apos;s normal and not a cause for alarm — simply roll to your side rather than worrying about the position you fell asleep in. A pregnancy pillow, or a regular pillow tucked between the knees, can take pressure off the hips and lower back and make side sleeping easier to maintain through the night. There isn&apos;t one position that works for everyone; a wedge under the belly, extra pillow support, or a firmer mattress are all reasonable ways to make side sleeping more sustainable.
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Sleep changes by trimester</h2>
+          <h2 className="font-serif font-normal text-3xl text-linen mb-6">Sleep changes by trimester</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead>
-                <tr className="border-b border-white/10 text-slate-400">
+                <tr className="border-b border-moon/8 text-mist">
                   <th className="pb-2 pr-4 font-medium">Trimester</th>
                   <th className="pb-2 pr-4 font-medium">Sleep need</th>
                   <th className="pb-2 pr-4 font-medium">Main disruptors</th>
                   <th className="pb-2 font-medium">Key intervention</th>
                 </tr>
               </thead>
-              <tbody className="text-slate-300">
+              <tbody className="text-mist">
                 {[
                   ["First (wks 1–12)",   "8–10 hrs", "Progesterone surge, nausea, frequent urination", "Nap freely; prioritize total sleep"],
                   ["Second (wks 13–26)", "8–9 hrs",  "Growing belly, round ligament pain, vivid dreams", "Start side sleeping; body pillow"],
                   ["Third (wks 27–40)",  "8–10 hrs", "Fetal movement, reflux, RLS, anxiety",            "Wedge pillow; limit fluids after 6 PM"],
                 ].map(([trimester, need, disruptors, intervention]) => (
-                  <tr key={trimester} className="border-b border-white/5 align-top">
-                    <td className="py-2.5 pr-4 font-semibold text-white whitespace-nowrap">{trimester}</td>
-                    <td className="py-2.5 pr-4 text-indigo-300 font-medium whitespace-nowrap">{need}</td>
+                  <tr key={trimester} className="border-b border-moon/5 align-top">
+                    <td className="py-2.5 pr-4 font-semibold text-linen whitespace-nowrap">{trimester}</td>
+                    <td className="py-2.5 pr-4 text-ember-light font-medium whitespace-nowrap">{need}</td>
                     <td className="py-2.5 pr-4">{disruptors}</td>
                     <td className="py-2.5">{intervention}</td>
                   </tr>
@@ -203,28 +203,28 @@ export default function PregnancySleepCalculatorPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">Interpreting your results</h2>
-          <p className="text-slate-400 leading-relaxed mb-4">
+          <h2 className="font-serif font-normal text-3xl text-linen mb-4">Interpreting your results</h2>
+          <p className="text-mist leading-relaxed mb-4">
             The calculator shows the recommended range for your trimester and whether your current sleep meets it. Meeting the recommended range means your sleep duration is supporting fetal development and maternal health. Falling below it consistently warrants attention — but short-term disruption (illness, travel, stress) is normal and not immediately concerning.
           </p>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-mist leading-relaxed">
             Sleeping significantly above the recommendation (10+ hours while still feeling unrefreshed) can indicate anemia, thyroid dysfunction, or sleep-disordered breathing — all more common during pregnancy. Mention this to your OB or midwife.
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">Limitations</h2>
-          <p className="text-slate-400 leading-relaxed mb-6">
+          <h2 className="font-serif font-normal text-3xl text-linen mb-4">Limitations</h2>
+          <p className="text-mist leading-relaxed mb-6">
             This tool provides general sleep duration guidance based on ACOG and NSF recommendations. It does not account for multiple pregnancies, pre-existing sleep disorders, high-risk pregnancy conditions, or individual variation in sleep need. This page is written by a non-clinician and summarizes publicly available guidance from ACOG and NSF — it is not medical advice, and it is not a substitute for care from your OB, midwife, or another qualified healthcare provider.
           </p>
-          <h3 className="text-lg font-semibold text-white mb-3">When to talk to your doctor</h3>
-          <p className="text-slate-400 leading-relaxed">
+          <h3 className="text-lg font-semibold text-linen mb-3">When to talk to your doctor</h3>
+          <p className="text-mist leading-relaxed">
             Reach out to your provider if you notice any of the following, rather than waiting to see if it resolves on its own: insomnia severe enough that you&apos;re consistently getting only a few hours of sleep; loud snoring, gasping, or choking sounds during sleep (pregnancy increases the risk of sleep apnea, particularly in the third trimester); or restless leg symptoms that are frequent, intense, or making it hard to fall asleep. These are medical questions, not calculator questions — they&apos;re worth raising at your next prenatal visit even if you&apos;re not sure they&apos;re &quot;serious enough&quot; to mention.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Frequently asked questions</h2>
+          <h2 className="font-serif font-normal text-3xl text-linen mb-6">Frequently asked questions</h2>
           <div className="space-y-3">
             {[
               {
@@ -244,25 +244,25 @@ export default function PregnancySleepCalculatorPage() {
                 a: "A growing belly makes all positions uncomfortable, frequent urination disrupts sleep, restless leg syndrome peaks, and anxiety about labor rises. A full-body pregnancy pillow helps significantly.",
               },
             ].map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-white/10 bg-white/5 cursor-pointer">
-                <summary className="font-medium text-white list-none flex justify-between items-center p-5">
+              <details key={q} className="group rounded-[18px] border border-moon/9 bg-dusk cursor-pointer">
+                <summary className="font-medium text-linen list-none flex justify-between items-center p-5">
                   {q}
-                  <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
+                  <ChevronDown className="w-4 h-4 text-mist group-open:rotate-180 transition-transform shrink-0" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-sm text-slate-400 leading-relaxed">{a}</p>
+                <p className="px-5 pb-5 text-sm text-mist leading-relaxed">{a}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <section className="mt-8 pt-6 border-t border-white/5">
-          <p className="text-xs text-slate-500">
+        <section className="mt-8 pt-6 border-t border-moon/5">
+          <p className="text-xs text-mist/70">
             Sources:{" "}
-            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+            <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-ember-light underline transition-colors">
               American College of Obstetricians and Gynecologists (ACOG)
             </a>
             {" "}·{" "}
-            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline transition-colors">
+            <a href="https://www.thensf.org" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-ember-light underline transition-colors">
               National Sleep Foundation (NSF)
             </a>
           </p>
