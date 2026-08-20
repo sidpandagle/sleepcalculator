@@ -15,7 +15,7 @@ export default function SleepCalculator() {
 
   return (
     <section
-      className="rounded-[26px] border border-moon/10 p-6 sm:p-[34px]"
+      className="min-w-0 rounded-[26px] border border-moon/10 p-6 sm:p-[34px]"
       style={{
         background: "linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.025))",
         boxShadow: "0 40px 90px -40px rgba(0,0,0,0.9)",

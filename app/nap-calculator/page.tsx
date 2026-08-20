@@ -97,7 +97,7 @@ export default function NapCalculatorPage() {
 
         <div className="grid lg:grid-cols-[1.15fr_1fr] gap-5 mt-11 items-start">
           <section
-            className="rounded-[26px] border border-moon/10 p-6 sm:p-7"
+            className="min-w-0 rounded-[26px] border border-moon/10 p-6 sm:p-7"
             style={{ background: "linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.025))" }}
           >
             <NapTab />
